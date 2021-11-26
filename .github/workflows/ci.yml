@@ -14,7 +14,7 @@ jobs:
     runs-on: ubuntu-latest
     defaults:
       run:
-        working-directory: src/client
+        working-directory: client
     steps:
     - uses: actions/checkout@v2
     - name: Use Node.js ${{ matrix.node-version }}
@@ -22,6 +22,6 @@ jobs:
       with:
         node-version: '16'
         cache: 'yarn'
-        cache-dependency-path: src/client/yarn.lock
+        cache-dependency-path: client/yarn.lock
     - run: yarn install
     - run: yarn build
