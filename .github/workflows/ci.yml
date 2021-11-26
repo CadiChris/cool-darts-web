@@ -12,6 +12,9 @@ on:
 jobs:
   build-client:
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: client
     steps:
     - uses: actions/checkout@v2
     - name: Use Node.js ${{ matrix.node-version }}
@@ -19,5 +22,5 @@ jobs:
       with:
         node-version: '16'
         cache: 'yarn'
-    - run: cd client/ && yarn install && yarn build
-    - run: npm test
+    - run: yarn install
+    - run: yarn build
