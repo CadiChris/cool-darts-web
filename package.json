@@ -6,7 +6,7 @@
   "author": "Christophe Cadilhac",
   "license": "MIT",
   "scripts": {
-    "postinstall": "yarn --cwd client install",
+    "postinstall": "YARN_PRODUCTION=false yarn --cwd client install",
     "heroku-postbuild": "yarn --cwd client build",
     "start": "node index.js",
     "dev": "nodemon index.js"
