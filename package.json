@@ -6,9 +6,10 @@
   "author": "Christophe Cadilhac",
   "license": "MIT",
   "scripts": {
+    "postinstall": "yarn --cwd client install",
+    "heroku-postbuild": "yarn --cwd client build",
     "start": "node index.js",
-    "dev": "nodemon index.js",
-    "build": "cd client/ && yarn install && yarn build"
+    "dev": "nodemon index.js"
   },
   "dependencies": {
     "express": "^4.17.1",
