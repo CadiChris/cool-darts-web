@@ -8,7 +8,7 @@
   "scripts": {
     "start": "node index.js",
     "dev": "nodemon index.js",
-    "build": "cd client/ && yarn build"
+    "build": "cd client/ && yarn install && yarn build"
   },
   "dependencies": {
     "express": "^4.17.1",
