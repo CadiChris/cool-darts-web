@@ -6,7 +6,10 @@ const port = process.env.PORT || 3000;
 
 app
   .use(express.static(path.join(__dirname, "./client/dist")))
-  .ws("/api/web-socket", () => log("Client connected"))
+  .ws("/api/web-socket", (ws) => {
+    log("Client connected ");
+    ws.on("message", (msg) => log(`Socket received ${msg}`));
+  })
   .listen(port, () => console.log(`Listening on ${port}`));
 
 function log(message) {

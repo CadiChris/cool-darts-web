@@ -1,4 +1,5 @@
-const socket = new WebSocket("ws://localhost:5000/api/web-socket");
+const host = import.meta.env.VITE_COOL_DARTS_HOST.replace(/^http/, "ws");
+const socket = new WebSocket(`${host}/api/web-socket`);
 
 export const apiWebSocket = {
   send(action) {
