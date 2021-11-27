@@ -1,13 +1,8 @@
 import { takeEvery } from "redux-saga/effects";
+import { apiWebSocket } from "./sockets/apiWebSocket.socket";
 
-export function* sendEverythingToSocket({ socket = consoleSocket } = {}) {
+export function* sendEverythingToSocket({ socket = apiWebSocket } = {}) {
   yield takeEvery("*", function* (a) {
     socket.send(a);
   });
 }
-
-const consoleSocket = {
-  send(action) {
-    console.log("socket.send " + JSON.stringify(action));
-  },
-};
