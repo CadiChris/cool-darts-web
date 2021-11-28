@@ -6,14 +6,14 @@ const port = process.env.PORT || 33290;
 
 app
   .use(express.static(path.join(__dirname, "./client/dist")))
-  .ws("/api/web-socket", (ws) => {
+  .ws("/api/web-socket", (newSocket) => {
     log("Client connected. Total clients: " + expressWs.getWss().clients.size);
 
-    ws.on("message", (msg) => {
+    newSocket.on("message", (msg) => {
       log(`Socket received ${msg}`);
       [...expressWs.getWss().clients]
-        .filter((aWs) => aWs !== ws)
-        .forEach((aWs) => aWs.send(msg));
+        .filter((ws) => ws !== newSocket)
+        .forEach((ws) => ws.send(msg));
     });
   })
   .listen(port, () => console.log(`Listening on ${port}`));
