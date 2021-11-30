@@ -18,4 +18,6 @@ jobs:
       with:
         node-version: '16'
         cache: 'yarn'
-    - run: yarn --cwd client test
+        cache-dependency-path: src/client/yarn-lock.json
+    - run: yarn --cwd client/ install
+    - run: yarn --cwd client/ test
