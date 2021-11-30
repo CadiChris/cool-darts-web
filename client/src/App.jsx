@@ -1,5 +1,5 @@
 import "./App.css";
-import Cricket from "./Cricket/Cricket.container";
+import Cricket from "./Cricket/ui/Cricket.container";
 
 function App() {
 
