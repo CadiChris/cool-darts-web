@@ -1,9 +1,10 @@
 import { Cricket } from "./Cricket";
 import { connect } from "react-redux";
-import { inscrireCricket } from "../reducer";
+import { inscrireCricket } from "../domaine/actions";
+import { selectInscrits } from "../domaine/reducer";
 
 const mapStateToProps = (state) => ({
-  joueurs: state.joueurs,
+  joueurs: selectInscrits(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({

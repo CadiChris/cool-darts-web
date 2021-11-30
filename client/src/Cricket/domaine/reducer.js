@@ -1,19 +1,36 @@
 import { scoreVierge } from "./arbitrage/score";
 import { calculerLeNouveauScore } from "./arbitrage/arbitre";
 import { vainqueurs } from "./arbitrage/vainqueurs";
-import { DEMARRER_CRICKET, VISITER } from "./actions";
+import { DEMARRER_CRICKET, INSCRIRE_CRICKET, VISITER } from "./actions";
 
-const STATE_INITIAL = {
-  scores: [],
-  vainqueurs: [],
+export const PHASES = {
+  INSCRIPTION: "INSCRIPTION",
+  EN_COURS: "EN_COURS",
+  TERMINEE: "TERMINEE",
 };
 
-export default function partie(state = STATE_INITIAL, action) {
+const { EN_COURS, TERMINEE, INSCRIPTION } = PHASES;
+
+const STATE_INITIAL = {
+  joueurs: [],
+  scores: [],
+  vainqueurs: [],
+  phase: INSCRIPTION,
+};
+
+export function cricketReducer(state = STATE_INITIAL, action) {
   switch (action.type) {
+    case INSCRIRE_CRICKET:
+      return {
+        ...state,
+        joueurs: [...state.joueurs, { nom: action.joueur }],
+      };
+
     case DEMARRER_CRICKET:
       return {
-        ...STATE_INITIAL,
-        scores: action.joueurs.map(scoreVierge),
+        ...state,
+        scores: state.joueurs.map((s) => scoreVierge(s.nom)),
+        phase: EN_COURS,
       };
 
     case VISITER:
@@ -40,4 +57,6 @@ export default function partie(state = STATE_INITIAL, action) {
 }
 
 const estTerminee = (vainqueursDuNouveauScore) =>
-  vainqueursDuNouveauScore.length > 0 ? "TERMINEE" : null;
+  vainqueursDuNouveauScore.length > 0 ? TERMINEE : null;
+
+export const selectInscrits = (state) => state.joueurs;

@@ -1,19 +1,34 @@
 import freeze from "deep-freeze";
-import cricket from "../reducer";
-import { demarrerCricket, visiter } from "../actions";
+import { cricketReducer, PHASES, selectInscrits } from "../reducer";
+import { demarrerCricket, inscrireCricket, visiter } from "../actions";
+
+const { EN_COURS, INSCRIPTION } = PHASES;
 
 it("retourne le state initial", () => {
-  expect(cricket(undefined, {})).toEqual({
+  expect(cricketReducer(undefined, {})).toEqual({
+    joueurs: [],
     scores: [],
     vainqueurs: [],
+    phase: INSCRIPTION,
   });
 });
 
+it("inscrit des joueurs", () => {
+  const avecInscrits = executer([inscrireCricket("J1"), inscrireCricket("J2")]);
+
+  expect(selectInscrits(avecInscrits)).toEqual([{ nom: "J1" }, { nom: "J2" }]);
+});
+
 it("démarre la partie", () => {
-  const partieDemarree = executer([demarrerCricket(["J1", "J2"])]);
+  const partieDemarree = executer([
+    inscrireCricket("J1"),
+    inscrireCricket("J2"),
+    demarrerCricket(),
+  ]);
 
   expect(partieDemarree).toEqual({
-    vainqueurs: [],
+    joueurs: [{ nom: "J1" }, { nom: "J2" }],
+    phase: EN_COURS,
     scores: [
       {
         joueur: "J1",
@@ -42,12 +57,14 @@ it("démarre la partie", () => {
         },
       },
     ],
+    vainqueurs: [],
   });
 });
 
 it("modifie le score sur un lancer de fléchette", () => {
   const apresLancerDeJ1 = executer([
-    demarrerCricket(["J1"]),
+    inscrireCricket("J1"),
+    demarrerCricket(),
     visiter("J1", [20]),
   ]);
 
@@ -59,12 +76,14 @@ it("modifie le score sur un lancer de fléchette", () => {
 
 it("permet de lancer les fléchettes en visite", () => {
   const avecTroisLancersSimples = executer([
-    demarrerCricket(["J1"]),
+    inscrireCricket("J1"),
+    demarrerCricket(),
     visiter("J1", [20, 20, 20]),
   ]);
 
   const avecUneVisiteDeTroisFlechettes = executer([
-    demarrerCricket(["J1"]),
+    inscrireCricket("J1"),
+    demarrerCricket(),
     visiter("J1", [20, 20, 20]),
   ]);
 
@@ -72,26 +91,36 @@ it("permet de lancer les fléchettes en visite", () => {
 });
 
 const triple = (chiffre) => [chiffre, chiffre, chiffre];
+
 it("met fin à la partie sur le lancer qui désigne le vainqueur", () => {
-  const partieAvecUnJoueur = executer([demarrerCricket(["J1"])]);
+  const partieAvecUnJoueur = executer([
+    inscrireCricket("J1"),
+    demarrerCricket(),
+  ]);
 
   const toutFermeSaufLeBull = [15, 16, 17, 18, 19, 20].reduce(
-    (state, chiffre) => cricket(state, visiter("J1", triple(chiffre))),
+    (state, chiffre) => cricketReducer(state, visiter("J1", triple(chiffre))),
     partieAvecUnJoueur
   );
 
   const fermerLeBull = visiter("J1", triple(25));
-  const partieTerminee = cricket(toutFermeSaufLeBull, fermerLeBull);
+  const partieTerminee = cricketReducer(toutFermeSaufLeBull, fermerLeBull);
 
   expect(partieTerminee.vainqueurs).toEqual(["J1"]);
 });
 
 it("écrase la partie en cours au démarrage d'une nouvelle partie", () => {
-  const partieViergeBobEtAlice = executer([demarrerCricket(["Bob", "Alice"])]);
+  const partieViergeBobEtAlice = executer([
+    inscrireCricket("Bob"),
+    inscrireCricket("Alice"),
+    demarrerCricket(),
+  ]);
   const partieEnCoursQuiRedemarre = executer([
-    demarrerCricket(["John", "Franck"]),
-    visiter("John", [20]),
-    demarrerCricket(["Bob", "Alice"]),
+    inscrireCricket("Bob"),
+    inscrireCricket("Alice"),
+    demarrerCricket(),
+    visiter("Bob", [20]),
+    demarrerCricket(),
   ]);
 
   expect(partieEnCoursQuiRedemarre).toEqual(partieViergeBobEtAlice);
@@ -99,7 +128,7 @@ it("écrase la partie en cours au démarrage d'une nouvelle partie", () => {
 
 const executer = (actions) =>
   actions.reduce((state, action) => {
-    const nextState = cricket(state, action);
+    const nextState = cricketReducer(state, action);
     freeze(nextState);
     return nextState;
   }, undefined);
