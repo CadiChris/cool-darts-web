@@ -10,6 +10,7 @@
     "heroku-postbuild": "yarn --cwd client build",
     "start": "node index.js",
     "dev": "nodemon index.js",
+    "heroku-local": "yarn --cwd client build && heroku local web",
     "prepare": "husky install"
   },
   "dependencies": {

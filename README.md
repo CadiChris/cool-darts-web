@@ -8,7 +8,26 @@ Le code source est à la racine du repo car c'est la seule façon que je connais
 
 ### Développement
 
-`Prettier` s'exécute en pre-commit hook.
+`Prettier` s'exécute en pre-commit hook.  
+La [CLI Heroku](https://devcenter.heroku.com/categories/command-line) est nécessaire pour travailler efficacement.
+
+#### Lancer le serveur
+
+> `yarn dev`
+>
+> Utilise `nodemon` pour avoir du live reload.
+
+> `yarn heroku-local`
+>
+> Build le client puis lance le serveur comme sur Heroku.
+
+> `cd client/ && yarn build`
+>
+> Build le client dans `client/dist/` ce qui met à
+
+#### Lancer le client
+
+> `cd client/ && yarn dev`
 
 ### Déploiement
 
