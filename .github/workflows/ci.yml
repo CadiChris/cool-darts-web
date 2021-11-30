@@ -12,12 +12,15 @@ on:
 jobs:
   tests-of-client:
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: client
     steps:
     - uses: actions/checkout@v2
     - uses: actions/setup-node@v2
       with:
         node-version: '16'
         cache: 'yarn'
-        cache-dependency-path: client/yarn-lock.json
-    - run: yarn --cwd client/ install
-    - run: yarn --cwd client/ test
+        cache-dependency-path: client/yarn.lock
+    - run: yarn install
+    - run: yarn test
