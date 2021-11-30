@@ -31,5 +31,5 @@ La [CLI Heroku](https://devcenter.heroku.com/categories/command-line) est néces
 
 ### Déploiement
 
-C'est [Heroku](https://dashboard.heroku.com/apps/cool-darts-web/) qui déploie.  
+C'est [Heroku](https://dashboard.heroku.com/apps/cool-darts/) qui déploie.  
 Les `postinstall` et `heroku-postbuild` dans le [package.json](./package.json) sont pour lui : installer les dépendances npm du `client/` puis le builder.
