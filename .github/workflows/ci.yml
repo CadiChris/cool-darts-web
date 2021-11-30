@@ -10,7 +10,10 @@ on:
     branches: [ main ]
 
 jobs:
-  tests:
+  tests-client:
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: src/client
     steps:
     - run: yarn test
