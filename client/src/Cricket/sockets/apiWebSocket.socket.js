@@ -1,4 +1,4 @@
-import { Env } from "../../Env";
+import { Env } from "../../env/Env";
 
 const host = Env.COOL_DARTS_HOST;
 const socket = new WebSocket(`${host}/api/web-socket`);
