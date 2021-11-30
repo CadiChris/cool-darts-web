@@ -5,7 +5,7 @@ import { composeWithDevTools } from "redux-devtools-extension";
 import {
   dispatchEveryActionReceived,
   sendEverythingToSocket,
-} from "../Cricket/sagas";
+} from "../Cricket/domaine/sagas";
 
 const sagaMiddleware = createSagaMiddleware();
 

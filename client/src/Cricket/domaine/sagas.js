@@ -1,5 +1,5 @@
 import { call, put, takeEvery } from "redux-saga/effects";
-import { apiWebSocket } from "./sockets/apiWebSocket.socket";
+import { apiWebSocket } from "../sockets/apiWebSocket.socket";
 import { eventChannel } from "redux-saga";
 
 export function* sendEverythingToSocket({ socket = apiWebSocket } = {}) {
