@@ -10,7 +10,7 @@ on:
     branches: [ main ]
 
 jobs:
-  does-nothing:
+  tests:
     runs-on: ubuntu-latest
     steps:
-    - run: echo "Heroku will build"
+    - run: yarn test
