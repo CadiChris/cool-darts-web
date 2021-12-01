@@ -46,11 +46,11 @@ function ColonneJoueur({ score }) {
 
 function Touches({ section }) {
   return (
-      <div>
-        {section.touches === 1 && <span>X</span>}
-        {section.touches === 2 && <span>XX</span>}
-        {section.touches === 3 && <span>XXX</span>}
-      </div>
+    <div className={`touches ${section.ferme ? "fermee" : ""}`}>
+      {section.touches === 1 && <span>X</span>}
+      {section.touches === 2 && <span>XX</span>}
+      {section.touches === 3 && <span>XXX</span>}
+    </div>
   );
 }
 

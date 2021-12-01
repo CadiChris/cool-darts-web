@@ -31,3 +31,15 @@
 .tableau-des-scores .colonne-des-chiffres {
   font-style: italic;
 }
+
+.tableau-des-scores .touches {
+  display: flex;
+  flex: 1;
+  height: 100%;
+  justify-content: center;
+  align-items: center;
+}
+
+.tableau-des-scores .fermee {
+  background-color: lavender;
+}
