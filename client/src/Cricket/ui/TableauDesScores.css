@@ -3,6 +3,10 @@
   flex-direction: row;
 }
 
+.tableau-des-scores h3 {
+  margin-top: 10px;
+}
+
 .tableau-des-scores .colonne-joueur {
   flex: 1;
   text-align: center;
@@ -11,4 +15,14 @@
 
 .tableau-des-scores .colonne-joueur:last-child {
   border-right: none;
+}
+
+.tableau-des-scores .colonne-des-chiffres {
+  flex: 1;
+  text-align: center;
+  border-right: 1px solid lavender;
+}
+
+.tableau-des-scores .cellule {
+  border-bottom: 1px solid lavender;
 }

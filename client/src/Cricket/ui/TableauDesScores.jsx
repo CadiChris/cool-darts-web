@@ -14,6 +14,7 @@ export function TableauDesScores() {
       {premier.map((s) => (
         <ColonneJoueur key={s.joueur} score={s} />
       ))}
+      <ColonneDesChiffres />
       {second.map((s) => (
         <ColonneJoueur key={s.joueur} score={s} />
       ))}
@@ -29,13 +30,27 @@ function ColonneJoueur({ score }) {
       <h3>{score.joueur}</h3>
       {[20, 19, 18, 17, 16, 15, 25].map((chiffre) => (
         <div
+          className="cellule"
           key={chiffre}
           onClick={() => dispatch(visiter(score.joueur, [chiffre]))}
         >
-          {chiffre}: {laSection(chiffre, score).touches}
+          {laSection(chiffre, score).touches}
         </div>
       ))}
       <div>{score.penalite}</div>
+    </div>
+  );
+}
+
+function ColonneDesChiffres() {
+  return (
+    <div className="colonne-des-chiffres cellule">
+      <h3>&nbsp;</h3>
+      {[20, 19, 18, 17, 16, 15, "Bull"].map((chiffre) => (
+        <div key={chiffre} className="cellule">
+          {chiffre}
+        </div>
+      ))}
     </div>
   );
 }
