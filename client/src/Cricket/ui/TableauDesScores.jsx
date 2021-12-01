@@ -42,7 +42,7 @@ function ColonneJoueur({ score }) {
           <Touches section={laSection(chiffre, score)} />
         </div>
       ))}
-      <div className="cellule">{score.penalite}</div>
+      <div className="cellule penalite">{score.penalite}</div>
     </div>
   );
 }
@@ -66,7 +66,7 @@ function ColonneDesChiffres() {
           {chiffre}
         </div>
       ))}
-      <div className="cellule" />
+      <div className="cellule penalite">&nbsp;</div>
     </div>
   );
 }

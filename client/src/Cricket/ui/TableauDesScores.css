@@ -13,12 +13,12 @@
 .tableau-des-scores .commandes {
   padding: 2rem 0;
   font-style: italic;
-  background-color: beige;
   font-size: 2rem;
   text-align: center;
 }
 
-.tableau-des-scores h3 {
+.tableau-des-scores h3,
+.tableau-des-scores .penalite {
   margin: 0;
   flex: 0 !important;
   padding: 0.5rem 0;
@@ -42,6 +42,11 @@
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.tableau-des-scores .penalite {
+  border-top: 3px solid lavender;
+  border-bottom: none;
 }
 
 .tableau-des-scores .colonne-des-chiffres {
