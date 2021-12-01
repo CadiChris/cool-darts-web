@@ -26,7 +26,7 @@ function ColonneJoueur({ score }) {
   const dispatch = useDispatch();
 
   return (
-    <div className="colonne-joueur">
+    <div className="colonne colonne-joueur">
       <h3>{score.joueur}</h3>
       {[20, 19, 18, 17, 16, 15, 25].map((chiffre) => (
         <div
@@ -37,20 +37,21 @@ function ColonneJoueur({ score }) {
           {laSection(chiffre, score).touches}
         </div>
       ))}
-      <div>{score.penalite}</div>
+      <div className="cellule">{score.penalite}</div>
     </div>
   );
 }
 
 function ColonneDesChiffres() {
   return (
-    <div className="colonne-des-chiffres cellule">
+    <div className="colonne colonne-des-chiffres">
       <h3>&nbsp;</h3>
       {[20, 19, 18, 17, 16, 15, "Bull"].map((chiffre) => (
         <div key={chiffre} className="cellule">
           {chiffre}
         </div>
       ))}
+      <div className="cellule"/>
     </div>
   );
 }

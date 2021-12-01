@@ -1,13 +1,16 @@
 .tableau-des-scores {
   display: flex;
   flex-direction: row;
+  height: 100vh;
 }
 
 .tableau-des-scores h3 {
   margin-top: 10px;
 }
 
-.tableau-des-scores .colonne-joueur {
+.tableau-des-scores .colonne {
+  display: flex;
+  flex-direction: column;
   flex: 1;
   text-align: center;
   border-right: 1px solid lavender;
@@ -17,12 +20,14 @@
   border-right: none;
 }
 
-.tableau-des-scores .colonne-des-chiffres {
+.tableau-des-scores .cellule {
   flex: 1;
-  text-align: center;
-  border-right: 1px solid lavender;
+  border-bottom: 1px solid lavender;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-.tableau-des-scores .cellule {
-  border-bottom: 1px solid lavender;
+.tableau-des-scores .colonne-des-chiffres {
+  font-style: italic;
 }
