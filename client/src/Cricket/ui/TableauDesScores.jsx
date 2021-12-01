@@ -2,13 +2,19 @@ import { useDispatch, useSelector } from "react-redux";
 import { laSection, selectScores } from "../domaine/reducer";
 import "./TableauDesScores.css";
 import { visiter } from "../domaine/actions";
+import { split } from "../../utils/tableau";
 
 export function TableauDesScores() {
   const scores = useSelector(selectScores);
 
+  const { premier, second } = split(scores);
+
   return (
     <div className="tableau-des-scores">
-      {scores.map((s) => (
+      {premier.map((s) => (
+        <ColonneJoueur key={s.joueur} score={s} />
+      ))}
+      {second.map((s) => (
         <ColonneJoueur key={s.joueur} score={s} />
       ))}
     </div>
