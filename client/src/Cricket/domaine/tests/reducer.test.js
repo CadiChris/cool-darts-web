@@ -1,7 +1,7 @@
 import freeze from "deep-freeze";
 import {
   cricketReducer,
-  lesTouchesDansLe,
+  laSection,
   PHASES,
   selectInscrits,
   selectPhase,
@@ -72,10 +72,7 @@ it("modifie le score sur un lancer de fléchette", () => {
   ]);
 
   const scores = selectScores(apresLancerDeJ1);
-  expect(lesTouchesDansLe(20, "J1", scores)).toEqual({
-    touches: 1,
-    ferme: false,
-  });
+  expect(laSection(20, scores[0])).toEqual({ touches: 1, ferme: false });
 });
 
 it("permet de lancer les fléchettes en visite", () => {
