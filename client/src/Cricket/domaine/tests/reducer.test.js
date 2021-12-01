@@ -1,6 +1,7 @@
 import freeze from "deep-freeze";
 import {
   cricketReducer,
+  lesTouchesDansLe,
   PHASES,
   selectInscrits,
   selectPhase,
@@ -31,40 +32,6 @@ it("démarre la partie", () => {
     inscrireCricket("J2"),
     demarrerCricket(),
   ]);
-
-  expect(partieDemarree).toEqual({
-    joueurs: [{ nom: "J1" }, { nom: "J2" }],
-    phase: EN_COURS,
-    scores: [
-      {
-        joueur: "J1",
-        penalite: 0,
-        cible: {
-          15: { touches: 0, ferme: false },
-          16: { touches: 0, ferme: false },
-          17: { touches: 0, ferme: false },
-          18: { touches: 0, ferme: false },
-          19: { touches: 0, ferme: false },
-          20: { touches: 0, ferme: false },
-          25: { touches: 0, ferme: false },
-        },
-      },
-      {
-        joueur: "J2",
-        penalite: 0,
-        cible: {
-          15: { touches: 0, ferme: false },
-          16: { touches: 0, ferme: false },
-          17: { touches: 0, ferme: false },
-          18: { touches: 0, ferme: false },
-          19: { touches: 0, ferme: false },
-          20: { touches: 0, ferme: false },
-          25: { touches: 0, ferme: false },
-        },
-      },
-    ],
-    vainqueurs: [],
-  });
 
   expect(selectPhase(partieDemarree)).toEqual(EN_COURS);
   expect(selectScores(partieDemarree)).toEqual([
@@ -104,7 +71,8 @@ it("modifie le score sur un lancer de fléchette", () => {
     visiter("J1", [20]),
   ]);
 
-  expect(apresLancerDeJ1.scores[0].cible[20]).toEqual({
+  const scores = selectScores(apresLancerDeJ1);
+  expect(lesTouchesDansLe(20, "J1", scores)).toEqual({
     touches: 1,
     ferme: false,
   });

@@ -64,3 +64,6 @@ export const selectInscrits = (state) => state.joueurs;
 export const selectPhase = (state) => state.phase;
 
 export const selectScores = (state) => state.scores;
+
+export const lesTouchesDansLe = (chiffre, joueur, scores) =>
+  scores.find((s) => s.joueur === joueur).cible[chiffre];
