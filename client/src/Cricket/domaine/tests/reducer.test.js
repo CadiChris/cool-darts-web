@@ -1,5 +1,10 @@
 import freeze from "deep-freeze";
-import { cricketReducer, PHASES, selectInscrits } from "../reducer";
+import {
+  cricketReducer,
+  PHASES,
+  selectInscrits,
+  selectPhase,
+} from "../reducer";
 import { demarrerCricket, inscrireCricket, visiter } from "../actions";
 
 const { EN_COURS, INSCRIPTION } = PHASES;
@@ -59,6 +64,8 @@ it("démarre la partie", () => {
     ],
     vainqueurs: [],
   });
+
+  expect(selectPhase(partieDemarree)).toEqual(EN_COURS);
 });
 
 it("modifie le score sur un lancer de fléchette", () => {

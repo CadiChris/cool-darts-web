@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-export function Inscription({ onInscription, joueurs }) {
+export function Inscription({ onInscription, joueurs, onDemarrerPartie }) {
   const [nom, setNom] = useState("");
   return (
     <div>
@@ -17,6 +17,8 @@ export function Inscription({ onInscription, joueurs }) {
       {joueurs.map(({ nom }) => (
         <div key={nom}>{nom}</div>
       ))}
+
+      <button onClick={onDemarrerPartie}>Démarrer</button>
     </div>
   );
 }
