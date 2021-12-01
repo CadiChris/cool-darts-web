@@ -11,15 +11,18 @@ export function TableauDesScores() {
 
   return (
     <div className="tableau-des-scores">
-      {premier.map((s) => (
-        <ColonneJoueur key={s.joueur} score={s} />
-      ))}
+      <div>
+        {premier.map((s) => (
+          <ColonneJoueur key={s.joueur} score={s} />
+        ))}
 
-      <ColonneDesChiffres />
+        <ColonneDesChiffres />
 
-      {second.map((s) => (
-        <ColonneJoueur key={s.joueur} score={s} />
-      ))}
+        {second.map((s) => (
+          <ColonneJoueur key={s.joueur} score={s} />
+        ))}
+      </div>
+      <div className="commandes">COMMANDES</div>
     </div>
   );
 }

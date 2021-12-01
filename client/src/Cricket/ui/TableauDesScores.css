@@ -1,7 +1,21 @@
 .tableau-des-scores {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   height: 100vh;
+}
+
+.tableau-des-scores > div:first-child {
+  display: flex;
+  flex-direction: row;
+  flex: 1;
+}
+
+.tableau-des-scores .commandes {
+  padding: 2rem 0;
+  font-style: italic;
+  background-color: beige;
+  font-size: 2rem;
+  text-align: center;
 }
 
 .tableau-des-scores h3 {
