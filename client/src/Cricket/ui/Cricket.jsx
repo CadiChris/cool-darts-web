@@ -1,12 +1,16 @@
 import { Inscription } from "./Inscription";
-import { PHASES } from "../domaine/reducer";
-import { useDispatch } from "react-redux";
-import { demarrerCricket } from "../domaine/actions";
+import { PHASES, selectInscrits, selectPhase } from "../domaine/reducer";
+import { useDispatch, useSelector } from "react-redux";
+import { demarrerCricket, inscrireCricket } from "../domaine/actions";
 
 const { INSCRIPTION, EN_COURS } = PHASES;
 
-export function Cricket({ phase, joueurs, onInscription }) {
-  const dispatch = useDispatch()
+export function Cricket() {
+  const dispatch = useDispatch();
+  const onInscription = (joueur) => dispatch(inscrireCricket(joueur));
+  const phase = useSelector(selectPhase);
+  const joueurs = useSelector(selectInscrits);
+
   return (
     <div>
       {phase === INSCRIPTION && (
