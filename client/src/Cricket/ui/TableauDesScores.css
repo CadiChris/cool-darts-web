@@ -51,6 +51,7 @@
 
 .tableau-des-scores .colonne-des-chiffres {
   font-style: italic;
+  max-width: 5rem;
 }
 
 .tableau-des-scores .colonne-des-chiffres .cellule {
