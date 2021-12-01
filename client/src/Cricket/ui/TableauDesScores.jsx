@@ -32,7 +32,7 @@ function ColonneJoueur({ score }) {
 
   return (
     <div className="colonne colonne-joueur">
-      <h3>{score.joueur}</h3>
+      <h3 className="cellule">{score.joueur}</h3>
       {[20, 19, 18, 17, 16, 15, 25].map((chiffre) => (
         <div
           className="cellule"
@@ -60,7 +60,7 @@ function Touches({ section }) {
 function ColonneDesChiffres() {
   return (
     <div className="colonne colonne-des-chiffres">
-      <h3>&nbsp;</h3>
+      <h3 className="cellule">&nbsp;</h3>
       {[20, 19, 18, 17, 16, 15, "Bull"].map((chiffre) => (
         <div key={chiffre} className="cellule">
           {chiffre}

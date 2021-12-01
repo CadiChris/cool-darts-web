@@ -19,7 +19,9 @@
 }
 
 .tableau-des-scores h3 {
-  margin-top: 10px;
+  margin: 0;
+  flex: 0 !important;
+  padding: 0.5rem 0;
 }
 
 .tableau-des-scores .colonne {
