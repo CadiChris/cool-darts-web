@@ -62,3 +62,5 @@ const estTerminee = (vainqueursDuNouveauScore) =>
 export const selectInscrits = (state) => state.joueurs;
 
 export const selectPhase = (state) => state.phase;
+
+export const selectScores = (state) => state.scores;

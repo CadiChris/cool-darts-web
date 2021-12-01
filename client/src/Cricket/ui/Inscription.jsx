@@ -5,6 +5,8 @@ export function Inscription({ onInscription, joueurs, onDemarrerPartie }) {
 
   return (
     <div>
+      <h1>Cool Darts </h1>
+
       <input
         type="text"
         value={nom}

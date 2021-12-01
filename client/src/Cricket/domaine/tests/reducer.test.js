@@ -4,6 +4,7 @@ import {
   PHASES,
   selectInscrits,
   selectPhase,
+  selectScores,
 } from "../reducer";
 import { demarrerCricket, inscrireCricket, visiter } from "../actions";
 
@@ -66,6 +67,34 @@ it("démarre la partie", () => {
   });
 
   expect(selectPhase(partieDemarree)).toEqual(EN_COURS);
+  expect(selectScores(partieDemarree)).toEqual([
+    {
+      joueur: "J1",
+      penalite: 0,
+      cible: {
+        15: { touches: 0, ferme: false },
+        16: { touches: 0, ferme: false },
+        17: { touches: 0, ferme: false },
+        18: { touches: 0, ferme: false },
+        19: { touches: 0, ferme: false },
+        20: { touches: 0, ferme: false },
+        25: { touches: 0, ferme: false },
+      },
+    },
+    {
+      joueur: "J2",
+      penalite: 0,
+      cible: {
+        15: { touches: 0, ferme: false },
+        16: { touches: 0, ferme: false },
+        17: { touches: 0, ferme: false },
+        18: { touches: 0, ferme: false },
+        19: { touches: 0, ferme: false },
+        20: { touches: 0, ferme: false },
+        25: { touches: 0, ferme: false },
+      },
+    },
+  ]);
 });
 
 it("modifie le score sur un lancer de fléchette", () => {

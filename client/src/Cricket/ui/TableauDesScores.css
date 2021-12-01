@@ -1,0 +1,14 @@
+.tableau-des-scores {
+  display: flex;
+  flex-direction: row;
+}
+
+.tableau-des-scores .colonne-joueur {
+  flex: 1;
+  text-align: center;
+  border-right: 1px solid lavender;
+}
+
+.tableau-des-scores .colonne-joueur:last-child {
+  border-right: none;
+}
