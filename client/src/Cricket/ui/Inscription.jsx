@@ -2,6 +2,7 @@ import { useState } from "react";
 
 export function Inscription({ onInscription, joueurs, onDemarrerPartie }) {
   const [nom, setNom] = useState("");
+
   return (
     <div>
       <input

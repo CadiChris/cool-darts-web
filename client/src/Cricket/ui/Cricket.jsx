@@ -2,6 +2,7 @@ import { Inscription } from "./Inscription";
 import { PHASES, selectInscrits, selectPhase } from "../domaine/reducer";
 import { useDispatch, useSelector } from "react-redux";
 import { demarrerCricket, inscrireCricket } from "../domaine/actions";
+import { TableauDesScores } from "./TableauDesScores";
 
 const { INSCRIPTION, EN_COURS } = PHASES;
 
@@ -21,7 +22,7 @@ export function Cricket() {
         />
       )}
 
-      {phase === EN_COURS && <div>GAME ON</div>}
+      {phase === EN_COURS && <TableauDesScores/>}
     </div>
   );
 }
