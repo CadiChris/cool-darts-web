@@ -1,7 +1,7 @@
-export function Commandes({ touches }) {
+export function Commandes({ touches, onReset }) {
   return (
     <div className="commandes">
-      <button>X</button>
+      <button onClick={onReset}>X</button>
       <div className="resume">
         {touches.touches.map((t) => (
           <div key={t.chiffre}>

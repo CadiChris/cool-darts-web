@@ -4,7 +4,12 @@ import "./TableauDesScores.css";
 import { split } from "../../utils/tableau";
 import { useSelector } from "react-redux";
 import { Commandes } from "./Commandes";
-import { commandesReducer, STATE_INITIAL, uneTouche, } from "./commandes.reducer";
+import {
+  commandesReducer,
+  reset,
+  STATE_INITIAL,
+  uneTouche,
+} from "./commandes.reducer";
 
 export function TableauDesScores() {
   const scores = useSelector(selectScores);
@@ -41,7 +46,10 @@ export function TableauDesScores() {
           />
         ))}
       </div>
-      <Commandes touches={stateTouches} />
+      <Commandes
+        touches={stateTouches}
+        onReset={() => dispatchTouches(reset())}
+      />
     </div>
   );
 }
