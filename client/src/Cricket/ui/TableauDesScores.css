@@ -69,3 +69,19 @@
 .tableau-des-scores .fermee {
   background-color: lavender;
 }
+
+.tableau-des-scores .commandes {
+  display: flex;
+  align-items: center;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+.tableau-des-scores .commandes .resume {
+  flex: 1;
+}
+
+.tableau-des-scores .commandes button {
+  font-size: 1.5rem;
+  padding: 1rem;
+}
