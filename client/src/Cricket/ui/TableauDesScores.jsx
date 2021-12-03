@@ -1,4 +1,4 @@
-import { useReducer } from "react";
+import { useEffect, useReducer, useState } from "react";
 import { laSection, selectScores } from "../domaine/reducer";
 import "./TableauDesScores.css";
 import { split } from "../../utils/tableau";
@@ -73,7 +73,7 @@ function ColonneJoueur({ score, onTouche }) {
           <Touches section={laSection(chiffre, score)} />
         </div>
       ))}
-      <div className="cellule penalite">{score.penalite}</div>
+      <Penalite valeur={score.penalite} />
     </div>
   );
 }
@@ -86,6 +86,26 @@ function Touches({ section }) {
       {section.touches === 3 && <span>XXX</span>}
     </div>
   );
+}
+
+function Penalite({ valeur }) {
+  const [valeurAnimee, setValeurAnimee] = useState(valeur);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setValeurAnimee((precendente) => {
+        if (precendente < valeur) return precendente + 1;
+        else {
+          clearInterval(interval);
+          return precendente;
+        }
+      });
+    }, 25);
+
+    return () => clearInterval(interval);
+  }, [valeur]);
+
+  return <div className="cellule penalite">{valeurAnimee}</div>;
 }
 
 function ColonneDesChiffres() {
