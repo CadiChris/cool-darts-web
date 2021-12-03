@@ -92,17 +92,18 @@ function Penalite({ valeur }) {
   const [valeurAnimee, setValeurAnimee] = useState(valeur);
 
   useEffect(() => {
-    const interval = setInterval(() => {
-      setValeurAnimee((precendente) => {
-        if (precendente < valeur) return precendente + 1;
-        else {
-          clearInterval(interval);
-          return precendente;
-        }
-      });
-    }, 25);
+    function augmenterOuArreter(courante) {
+      if (courante >= valeur) clearInterval(animation);
 
-    return () => clearInterval(interval);
+      return courante < valeur ? courante + 1 : courante;
+    }
+
+    const animation = setInterval(
+      () => setValeurAnimee(augmenterOuArreter),
+      25
+    );
+
+    return () => clearInterval(animation);
   }, [valeur]);
 
   return <div className="cellule penalite">{valeurAnimee}</div>;
