@@ -10,13 +10,6 @@
   flex: 1;
 }
 
-.tableau-des-scores .commandes {
-  padding: 2rem 0;
-  font-style: italic;
-  font-size: 2rem;
-  text-align: center;
-}
-
 .tableau-des-scores h3,
 .tableau-des-scores .penalite {
   margin: 0;
@@ -73,8 +66,12 @@
 .tableau-des-scores .commandes {
   display: flex;
   align-items: center;
+  font-style: italic;
+  font-size: 2rem;
+  text-align: center;
   padding-left: 1rem;
   padding-right: 1rem;
+  height: 9rem; /* Pour loger 3 chiffres différents au max */
 }
 
 .tableau-des-scores .commandes .resume {
