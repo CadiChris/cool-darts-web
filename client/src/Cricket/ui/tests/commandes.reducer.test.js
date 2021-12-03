@@ -1,4 +1,10 @@
-import { commandesReducer, reset, uneTouche } from "../commandes.reducer.js";
+import {
+  commandesReducer,
+  enVisite,
+  reset,
+  uneTouche,
+} from "../commandes.reducer.js";
+import { visiter } from "../../domaine/actions";
 
 function executer(actions) {
   return actions.reduce(commandesReducer, undefined);
@@ -64,5 +70,15 @@ describe("reducer des Commandes", () => {
     const apresReset = executer([uneTouche("J1", 20), reset()]);
 
     expect(apresReset).toEqual(commandesReducer(undefined, { type: "X" }));
+  });
+
+  it("sait convertir les touches en une visite", () => {
+    const apresDesTouches = executer([
+      uneTouche("J1", 20),
+      uneTouche("J1", 19),
+      uneTouche("J1", 18),
+    ]);
+
+    expect(enVisite(apresDesTouches)).toEqual(visiter("J1", [20, 19, 18]));
   });
 });

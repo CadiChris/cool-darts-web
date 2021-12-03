@@ -2,16 +2,18 @@ import { useReducer } from "react";
 import { laSection, selectScores } from "../domaine/reducer";
 import "./TableauDesScores.css";
 import { split } from "../../utils/tableau";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Commandes } from "./Commandes";
 import {
   commandesReducer,
+  enVisite,
   reset,
   STATE_INITIAL,
   uneTouche,
 } from "./commandes.reducer";
 
 export function TableauDesScores() {
+  const dispatch = useDispatch();
   const scores = useSelector(selectScores);
 
   const { premier, second } = split(scores);
@@ -49,6 +51,10 @@ export function TableauDesScores() {
       <Commandes
         touches={stateTouches}
         onReset={() => dispatchTouches(reset())}
+        onSubmit={() => {
+          dispatch(enVisite(stateTouches));
+          dispatchTouches(reset());
+        }}
       />
     </div>
   );

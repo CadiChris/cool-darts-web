@@ -1,3 +1,5 @@
+import { visiter } from "../domaine/actions";
+
 export const STATE_INITIAL = {
   joueur: null,
   touches: [],
@@ -37,11 +39,19 @@ function augmenterLeNombre(chiffre, touches) {
   }, []);
 }
 
+export function enVisite(state) {
+  const visite = [];
+  for (const { chiffre, nombre } of state.touches) {
+    for (let i = 0; i < nombre; i++) visite.push(chiffre);
+  }
+
+  return visiter(state.joueur, visite);
+}
+
 const UNE_TOUCHE = "UNE_TOUCHE";
 export function uneTouche(joueur, chiffre) {
   return { type: UNE_TOUCHE, joueur, chiffre };
 }
-
 const RESET = "RESET";
 export function reset() {
   return { type: RESET };

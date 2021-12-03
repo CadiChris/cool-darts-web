@@ -1,4 +1,4 @@
-export function Commandes({ touches, onReset }) {
+export function Commandes({ touches, onReset , onSubmit}) {
   return (
     <div className="commandes">
       <button onClick={onReset}>X</button>
@@ -9,7 +9,7 @@ export function Commandes({ touches, onReset }) {
           </div>
         ))}
       </div>
-      <button>✅</button>
+      <button onClick={onSubmit} >✅</button>
     </div>
   );
 }
