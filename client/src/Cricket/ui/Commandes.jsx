@@ -1,7 +1,9 @@
-export function Commandes({ touches, onReset , onSubmit}) {
+export function Commandes({ touches, onReset, onSubmit }) {
+  const aucuneTouche = touches.touches.length === 0;
   return (
     <div className="commandes">
-      <button onClick={onReset}>X</button>
+      <button onClick={onReset}>❌</button>
+
       <div className="resume">
         {touches.touches.map((t) => (
           <div key={t.chiffre}>
@@ -9,7 +11,10 @@ export function Commandes({ touches, onReset , onSubmit}) {
           </div>
         ))}
       </div>
-      <button onClick={onSubmit} >✅</button>
+
+      <button disabled={aucuneTouche} onClick={onSubmit}>
+        ✅
+      </button>
     </div>
   );
 }
