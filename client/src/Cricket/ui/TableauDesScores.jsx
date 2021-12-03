@@ -1,35 +1,52 @@
-import { useDispatch, useSelector } from "react-redux";
+import { useReducer } from "react";
 import { laSection, selectScores } from "../domaine/reducer";
 import "./TableauDesScores.css";
-import { visiter } from "../domaine/actions";
 import { split } from "../../utils/tableau";
+import { useSelector } from "react-redux";
+import { Commandes } from "./Commandes";
+import { commandesReducer, STATE_INITIAL, uneTouche, } from "./commandes.reducer";
 
 export function TableauDesScores() {
   const scores = useSelector(selectScores);
 
   const { premier, second } = split(scores);
 
+  const [stateTouches, dispatchTouches] = useReducer(
+    commandesReducer,
+    STATE_INITIAL
+  );
+
   return (
     <div className="tableau-des-scores">
       <div>
         {premier.map((s) => (
-          <ColonneJoueur key={s.joueur} score={s} />
+          <ColonneJoueur
+            key={s.joueur}
+            score={s}
+            onTouche={(chiffre) =>
+              dispatchTouches(uneTouche(s.joueur, chiffre))
+            }
+          />
         ))}
 
         <ColonneDesChiffres />
 
         {second.map((s) => (
-          <ColonneJoueur key={s.joueur} score={s} />
+          <ColonneJoueur
+            key={s.joueur}
+            score={s}
+            onTouche={(chiffre) =>
+              dispatchTouches(uneTouche(s.joueur, chiffre))
+            }
+          />
         ))}
       </div>
-      <div className="commandes">COMMANDES</div>
+      <Commandes touches={stateTouches} />
     </div>
   );
 }
 
-function ColonneJoueur({ score }) {
-  const dispatch = useDispatch();
-
+function ColonneJoueur({ score, onTouche }) {
   return (
     <div className="colonne colonne-joueur">
       <h3 className="cellule">{score.joueur}</h3>
@@ -37,7 +54,7 @@ function ColonneJoueur({ score }) {
         <div
           className="cellule"
           key={chiffre}
-          onClick={() => dispatch(visiter(score.joueur, [chiffre]))}
+          onClick={() => onTouche(chiffre)}
         >
           <Touches section={laSection(chiffre, score)} />
         </div>

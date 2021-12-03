@@ -1,4 +1,4 @@
-const STATE_INITIAL = {
+export const STATE_INITIAL = {
   joueur: null,
   touches: [],
 };
