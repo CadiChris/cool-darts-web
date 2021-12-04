@@ -10,6 +10,13 @@
   flex: 1;
 }
 
+.tableau-des-scores h3 {
+  min-height: 2rem;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
 .tableau-des-scores h3,
 .tableau-des-scores .penalite {
   margin: 0;
@@ -44,7 +51,7 @@
 
 .tableau-des-scores .colonne-des-chiffres {
   font-style: italic;
-  max-width: 5rem;
+  max-width: 3rem;
 }
 
 .tableau-des-scores .colonne-des-chiffres .cellule {
