@@ -19,6 +19,9 @@ export function Inscription({ onInscription, joueurs, onDemarrerPartie }) {
         <button
           className="bouton-principal"
           onClick={() => {
+            if (!nom) return;
+            if (joueurs.map((j) => j.nom).indexOf(nom) !== -1) return;
+
             onInscription(nom);
             setNom("");
           }}
