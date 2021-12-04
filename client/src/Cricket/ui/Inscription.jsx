@@ -3,6 +3,7 @@ import "./Inscription.css";
 
 export function Inscription({ onInscription, joueurs, onDemarrerPartie }) {
   const [nom, setNom] = useState("");
+  const aucunJoueur = joueurs.length === 0;
 
   return (
     <div className="inscription">
@@ -33,7 +34,11 @@ export function Inscription({ onInscription, joueurs, onDemarrerPartie }) {
       </div>
 
       <div className="inscrire">
-        <button className="bouton-principal" onClick={onDemarrerPartie}>
+        <button
+          className="bouton-principal"
+          onClick={onDemarrerPartie}
+          disabled={aucunJoueur}
+        >
           Démarrer
         </button>
       </div>
