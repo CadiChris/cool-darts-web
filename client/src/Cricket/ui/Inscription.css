@@ -1,0 +1,47 @@
+.inscription {
+  display: flex;
+  flex-direction: column;
+  padding: 0 0.5rem;
+  height: 100vh;
+}
+
+.inscription h1 {
+  text-align: center;
+}
+
+.inscription .inscrit {
+  display: flex;
+  justify-content: stretch;
+}
+
+.inscription .inscrit input {
+  padding: 0.4rem 0 0.4rem 2px;
+  flex: 1;
+}
+
+.inscription .inscrit button {
+  margin-right: 0;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  margin-left: 1rem;
+}
+
+.inscription .joueurs {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  margin-top: 2rem;
+  padding-left: 1rem;
+}
+
+.inscription .inscrire {
+  height: 2rem;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 1rem;
+}
+
+.inscription .inscrire button {
+  padding-left: 4rem;
+  padding-right: 4rem;
+}
