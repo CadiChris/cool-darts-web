@@ -6,7 +6,7 @@ export function Inscription({ onInscription, joueurs, onDemarrerPartie }) {
 
   return (
     <div className="inscription">
-      <h1>Cool Darts </h1>
+      <h1 className="font-epaisse">Cool Darts </h1>
 
       <div className="inscrit">
         <input
@@ -16,6 +16,7 @@ export function Inscription({ onInscription, joueurs, onDemarrerPartie }) {
           onChange={(e) => setNom(e.target.value)}
         />
         <button
+          className="bouton-principal"
           onClick={() => {
             onInscription(nom);
             setNom("");
@@ -27,12 +28,14 @@ export function Inscription({ onInscription, joueurs, onDemarrerPartie }) {
 
       <div className="joueurs">
         {joueurs.map(({ nom }) => (
-            <div key={nom}>{nom}</div>
+          <div key={nom}>{nom}</div>
         ))}
       </div>
 
       <div className="inscrire">
-        <button onClick={onDemarrerPartie}>Démarrer</button>
+        <button className="bouton-principal" onClick={onDemarrerPartie}>
+          Démarrer
+        </button>
       </div>
     </div>
   );

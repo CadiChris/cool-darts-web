@@ -1,6 +1,35 @@
+:root {
+  --color-bordure: "white";
+  --color-fond: #355c7d;
+  --color-un: #6c5b7b;
+  --color-deux: #c06c84;
+  --color-trois: #f67280;
+  --color-quatre: #f8b195;
+
+  --font-basique: "Lato";
+  --font-epaisse: "Lato-Black";
+  --font-fine: "Lato-Italic";
+
+  --size-enorme: 3rem;
+  --size-grand: 2.1rem;
+  --size-standard: 1rem;
+  --size-mini: 0.6rem;
+
+  --hauteur-ligne: 48px;
+}
+
+.font-epaisse {
+  font-family: var(--font-basique);
+  font-weight: 900;
+  font-style: italic;
+}
+
 html,
 body,
 #root {
   margin: 0;
-  font-family: "Lato", sans-serif;
+  font-family: var(--font-basique), sans-serif;
+  font-size: 18px;
+  background-color: var(--color-fond);
+  color: white;
 }

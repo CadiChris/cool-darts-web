@@ -1,29 +1,38 @@
 .inscription {
   display: flex;
   flex-direction: column;
-  padding: 0 0.5rem;
+  padding: 0 1rem;
   height: 100vh;
 }
 
 .inscription h1 {
   text-align: center;
+  font-size: var(--size-enorme);
+  margin-top: 1rem;
 }
 
 .inscription .inscrit {
   display: flex;
-  justify-content: stretch;
+  flex-direction: column;
 }
 
 .inscription .inscrit input {
-  padding: 0.4rem 0 0.4rem 2px;
-  flex: 1;
+  padding-left: 9px;
+  font-size: var(--size-standard);
+  color: var(--color-un);
+  border: none;
+  border-radius: 4px;
+  display: flex;
+  height: var(--hauteur-ligne);
+}
+
+.inscription .inscrit input::placeholder {
+  color: #b0bec5;
 }
 
 .inscription .inscrit button {
-  margin-right: 0;
-  padding-left: 1rem;
-  padding-right: 1rem;
-  margin-left: 1rem;
+  margin-top: 1rem;
+  align-self: center;
 }
 
 .inscription .joueurs {
@@ -32,16 +41,14 @@
   flex: 1;
   margin-top: 2rem;
   padding-left: 1rem;
+  user-select: none;
 }
 
 .inscription .inscrire {
-  height: 2rem;
   display: flex;
   justify-content: center;
-  margin-bottom: 1rem;
+  margin-bottom: 4rem;
 }
 
 .inscription .inscrire button {
-  padding-left: 4rem;
-  padding-right: 4rem;
 }
