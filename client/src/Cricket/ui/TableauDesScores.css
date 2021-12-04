@@ -29,7 +29,7 @@
   flex-direction: column;
   flex: 1;
   text-align: center;
-  border-right: 1px solid lavender;
+  border-right: 1px solid var(--color-bordure);
 }
 
 .tableau-des-scores .colonne-joueur:last-child {
@@ -38,7 +38,7 @@
 
 .tableau-des-scores .cellule {
   flex: 1;
-  border-bottom: 1px solid lavender;
+  border-bottom: 1px solid var(--color-bordure);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -55,6 +55,10 @@
   max-width: 3rem;
 }
 
+.tableau-des-scores .colonne-joueur .cellule {
+  letter-spacing: 0.1rem;
+}
+
 .tableau-des-scores .colonne-des-chiffres .cellule {
   border: none;
 }
@@ -68,7 +72,7 @@
 }
 
 .tableau-des-scores .fermee {
-  background-color: lavender;
+  background-color: var(--color-deux);
 }
 
 .tableau-des-scores .commandes {
