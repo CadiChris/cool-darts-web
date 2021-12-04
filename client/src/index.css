@@ -24,6 +24,12 @@
   font-style: italic;
 }
 
+.font-legere {
+  font-style: italic;
+  font-weight: 100;
+  font-size: var(--size-standard);
+}
+
 html,
 body,
 #root {
