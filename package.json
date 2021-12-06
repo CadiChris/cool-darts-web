@@ -1,15 +1,15 @@
 {
   "name": "cool-darts-web",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "server/index.js",
   "repository": "https://github.com/cadichris/cool-darts-web.git",
   "author": "Christophe Cadilhac",
   "license": "MIT",
   "scripts": {
     "postinstall": "YARN_PRODUCTION=false yarn --cwd client install",
     "heroku-postbuild": "yarn --cwd client build",
-    "start": "node index.js",
-    "dev": "nodemon index.js",
+    "start": "node server/index.js",
+    "dev": "nodemon server/index.js",
     "heroku-local": "yarn --cwd client build && heroku local web",
     "prepare": "husky install"
   },
@@ -26,7 +26,8 @@
   "devDependencies": {
     "husky": ">=6",
     "lint-staged": ">=10",
-    "prettier": "2.5.0"
+    "prettier": "2.5.0",
+    "supertest": "^6.1.6"
   },
   "lint-staged": {
     "*.{js,css,md}": "prettier --write"

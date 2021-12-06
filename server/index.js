@@ -10,7 +10,7 @@ const { Client } = require("pg");
 log("DB URL is " + process.env.DATABASE_URL);
 const client = new Client({
   connectionString: process.env.DATABASE_URL,
-  ssl: false,
+  ssl: process.env.NODE_ENV === "production",
 });
 
 client.connect();
@@ -22,7 +22,7 @@ client.query("SELECT * FROM actions_in_rooms;", (err, res) => {
 });
 
 app
-  .use(express.static(path.join(__dirname, "./client/dist")))
+  .use(express.static(path.join(__dirname, "./../client/dist")))
   .ws("/api/web-socket", (newSocket) => {
     log("Client connected. Total clients: " + expressWs.getWss().clients.size);
 
