@@ -3,8 +3,9 @@
 ### Architecture
 
 Un serveur `nodejs` reposant sur `express`.  
-Le `/` du serveur sert une app `React` créée avec [vitejs](https://vitejs.dev/) dont les sources sont dans [client/](./client).  
-Le code source est à la racine du repo car c'est la seule façon que je connaisse pour qu'Heroku puisse déployer.
+Le `/` du serveur sert une app `React` créée avec [vitejs](https://vitejs.dev/) dont les sources sont dans [client/](./client).
+
+Le code source du serveur est dans [./server](./server).
 
 ### Développement
 
@@ -23,7 +24,7 @@ La [CLI Heroku](https://devcenter.heroku.com/categories/command-line) est néces
 
 > `cd client/ && yarn build`
 >
-> Build le client dans `client/dist/` ce qui met à
+> Build le client dans `client/dist/` ce qui met à jour le bundle qui sera servi par le serveur node.
 
 #### Lancer le client
 
