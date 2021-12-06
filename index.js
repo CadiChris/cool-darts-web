@@ -1,8 +1,25 @@
+require("dotenv").config();
 const express = require("express");
 const path = require("path");
 const app = express();
 const expressWs = require("express-ws")(app);
 const port = process.env.PORT || 33290;
+
+const { Client } = require("pg");
+
+log("DB URL is " + process.env.DATABASE_URL);
+const client = new Client({
+  connectionString: process.env.DATABASE_URL,
+  ssl: false,
+});
+
+client.connect();
+
+client.query("SELECT * FROM actions_in_rooms;", (err, res) => {
+  if (err) throw err;
+  for (let row of res.rows) log(JSON.stringify(row));
+  client.end();
+});
 
 app
   .use(express.static(path.join(__dirname, "./client/dist")))
@@ -16,7 +33,7 @@ app
         .forEach((ws) => ws.send(msg));
     });
   })
-  .listen(port, () => console.log(`Listening on ${port}`));
+  .listen(port, () => log(`Listening on ${port}`));
 
 function log(message) {
   console.log(`[COOL-DARTS] ${message}`);
