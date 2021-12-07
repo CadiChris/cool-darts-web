@@ -19,9 +19,9 @@ app
         .forEach((ws) => ws.send(msg));
     });
   })
-  .post("/room/clean", (res) => {
-    new ActionsInRoomsRepository(Adapters.DbAdapter).cleanRoom();
-    res.status(200);
+  .post("/room/clean", (req, res) => {
+    const repository = new ActionsInRoomsRepository(Adapters.DbAdapter);
+    repository.cleanRoom().then(() => res.status(200).json());
   });
 
 module.exports = { app };

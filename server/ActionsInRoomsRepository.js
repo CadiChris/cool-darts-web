@@ -3,8 +3,8 @@ class ActionsInRoomsRepository {
     this.dbAdapter = dbAdapter;
   }
 
-  cleanRoom() {
-    this.dbAdapter.truncate("actions_in_rooms");
+  async cleanRoom() {
+    await this.dbAdapter.truncate("actions_in_rooms");
   }
 }
 
