@@ -10,6 +10,7 @@
     "heroku-postbuild": "yarn --cwd client build",
     "start": "node server/index.js",
     "dev": "nodemon server/index.js",
+    "test": "jest ./server",
     "heroku-local": "yarn --cwd client build && heroku local web",
     "prepare": "husky install"
   },
@@ -25,6 +26,7 @@
   },
   "devDependencies": {
     "husky": ">=6",
+    "jest": "^27.4.3",
     "lint-staged": ">=10",
     "prettier": "2.5.0",
     "supertest": "^6.1.6"
