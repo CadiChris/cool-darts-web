@@ -1,6 +1,6 @@
 const express = require("express");
 const path = require("path");
-const { Adapters } = require("./adapters");
+const { Adapters } = require("./adapters/adapters");
 const { log } = require("./log");
 const { ActionsInRoomsRepository } = require("./ActionsInRoomsRepository");
 

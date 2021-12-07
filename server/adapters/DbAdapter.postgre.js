@@ -1,5 +1,5 @@
 const { Client } = require("pg");
-const { log } = require("./log");
+const { log } = require("../log");
 
 log("DB URL is " + process.env.DATABASE_URL);
 

@@ -1,6 +1,6 @@
 const request = require("supertest");
 const { app } = require("../app");
-const { Adapters } = require("../adapters");
+const { Adapters } = require("../adapters/adapters");
 
 describe("App", () => {
   beforeEach(() => {

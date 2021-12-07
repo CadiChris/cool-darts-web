@@ -1,8 +1,8 @@
 require("dotenv").config();
 const { app } = require("./app");
 const { log } = require("./log");
-const { Adapters } = require("./adapters");
-const { DbAdapterPostgre } = require("./DbAdapter.postgre");
+const { Adapters } = require("./adapters/adapters");
+const { DbAdapterPostgre } = require("./adapters/DbAdapter.postgre");
 
 Adapters.DbAdapter = DbAdapterPostgre;
 
