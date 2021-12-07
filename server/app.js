@@ -20,14 +20,14 @@ app
     });
   })
   .get("/room/actions", (req, res) => {
-    const repository = new ActionsInRoomsRepository(Adapters.DbAdapter);
-    repository
+    new ActionsInRoomsRepository(Adapters.DbAdapter)
       .getAllReduxActions()
       .then((actions) => res.status(200).json(actions));
   })
   .post("/room/clean", (req, res) => {
-    const repository = new ActionsInRoomsRepository(Adapters.DbAdapter);
-    repository.cleanRoom().then(() => res.status(200).json());
+    new ActionsInRoomsRepository(Adapters.DbAdapter)
+      .cleanRoom()
+      .then(() => res.status(200).json());
   });
 
 module.exports = { app };
