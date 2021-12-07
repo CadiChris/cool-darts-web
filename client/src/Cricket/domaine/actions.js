@@ -10,3 +10,6 @@ export const visiter = (joueur, chiffresTouches) => ({
   joueur,
   chiffresTouches,
 });
+
+export const CATCH_UP_ON_ROOM = "CATCH_UP_ON_ROOM";
+export const catchUpOnRoom = () => ({ type: CATCH_UP_ON_ROOM });

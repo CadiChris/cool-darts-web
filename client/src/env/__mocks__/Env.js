@@ -1,3 +1,3 @@
 export const Env = {
-  COOL_DARTS_HOST: "ws://localhost:5000",
+  COOL_DARTS_HTTP_HOST: "ws://localhost:5000",
 };
