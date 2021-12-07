@@ -1,5 +1,6 @@
 const { Client } = require("pg");
 const { log } = require("../log");
+const format = require("pg-format");
 
 log("DB URL is " + process.env.DATABASE_URL);
 
@@ -15,7 +16,8 @@ client.connect();
 
 const DbAdapterPostgre = {
   async truncate(table) {
-    await client.query(`TRUNCATE TABLE ${table};`);
+    await client.query(format("TRUNCATE TABLE %I;", table));
+    log(`Truncated table ${table}`);
   },
 };
 
