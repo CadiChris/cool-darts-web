@@ -19,6 +19,11 @@ const DbAdapterPostgre = {
     await client.query(format("TRUNCATE TABLE %I;", table));
     log(`Truncated table ${table}`);
   },
+
+  async getAll(table) {
+    const res = await client.query(format("SELECT * FROM %I;", table));
+    return res.rows;
+  },
 };
 
 module.exports = { DbAdapterPostgre };
