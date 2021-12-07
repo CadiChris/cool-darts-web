@@ -14,9 +14,14 @@ app
 
     newSocket.on("message", (msg) => {
       log(`Socket received ${msg}`);
-      [...expressWs.getWss().clients]
-        .filter((ws) => ws !== newSocket)
-        .forEach((ws) => ws.send(msg));
+
+      new ActionsInRoomsRepository(Adapters.DbAdapter)
+        .storeAction(msg)
+        .then(() => {
+          [...expressWs.getWss().clients]
+            .filter((ws) => ws !== newSocket)
+            .forEach((ws) => ws.send(msg));
+        });
     });
   })
   .get("/room/actions", (req, res) => {

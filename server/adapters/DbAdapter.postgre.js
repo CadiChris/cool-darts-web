@@ -24,6 +24,12 @@ const DbAdapterPostgre = {
     const res = await client.query(format("SELECT * FROM %I;", table));
     return res.rows;
   },
+
+  async insert(table, columns, values) {
+    const c = columns.join(",");
+    const v = values.map((_, i) => "$" + Number(i + 1)).join(",");
+    await client.query(`INSERT INTO ${table}(${c}) VALUES (${v});`, values);
+  },
 };
 
 module.exports = { DbAdapterPostgre };
