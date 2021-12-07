@@ -1,8 +1,10 @@
 require("dotenv").config();
 const { app } = require("./app");
 const { log } = require("./log");
+const { Adapters } = require("./adapters");
+const { DbAdapterPostgre } = require("./DbAdapter.postgre");
 
-log("DB URL is " + process.env.DATABASE_URL);
+Adapters.DbAdapter = DbAdapterPostgre;
 
 const port = process.env.PORT || 33290;
 
