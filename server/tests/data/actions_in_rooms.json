@@ -1,6 +1,6 @@
 [
   {
-    "room_name": "BIGOT",
+    "room_name": "",
     "action": { "type": "CRICKET/INSCRIRE_CRICKET", "joueur": "Olive" },
     "action_time": "2021-12-07 16:36:08.000000"
   }

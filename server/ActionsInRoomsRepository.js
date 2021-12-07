@@ -8,7 +8,10 @@ class ActionsInRoomsRepository {
   }
 
   async getAllReduxActions() {
-    const rows = await this.dbAdapter.getAll("actions_in_rooms");
+    const rows = await this.dbAdapter.getAll(
+      "actions_in_rooms",
+      "action_time ASC"
+    );
     return rows.map((r) => r.action);
   }
 

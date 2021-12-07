@@ -20,8 +20,9 @@ const DbAdapterPostgre = {
     log(`Truncated table ${table}`);
   },
 
-  async getAll(table) {
-    const res = await client.query(format("SELECT * FROM %I;", table));
+  async getAll(table, orderBy) {
+    const texte = format(`SELECT * FROM %I ORDER BY %s;`, table, orderBy);
+    const res = await client.query(texte);
     return res.rows;
   },
 

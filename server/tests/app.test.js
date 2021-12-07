@@ -11,25 +11,34 @@ describe("App", () => {
     };
   });
 
-  it("vide la table des actions sur POST /room/clean", (done) => {
-    const { truncate } = Adapters.DbAdapter;
+  describe("POST /room/clean", () => {
+    it("vide la table des actions sur POST /room/clean", (done) => {
+      const { truncate } = Adapters.DbAdapter;
 
-    request(app)
-      .post("/room/clean")
-      .expect(200)
-      .then(() => expect(truncate).toHaveBeenCalledWith("actions_in_rooms"))
-      .then(done)
-      .catch((err) => done(err));
+      request(app)
+        .post("/room/clean")
+        .expect(200)
+        .then(() => expect(truncate).toHaveBeenCalledWith("actions_in_rooms"))
+        .then(done)
+        .catch((err) => done(err));
+    });
   });
 
-  it("récupère toutes les actions d'une room sur GET /room/actions", (done) => {
-    Adapters.DbAdapter.getAll = jest.fn(async () => actions_in_rooms);
-    const { getAll } = Adapters.DbAdapter;
+  describe("GET /room/actions", () => {
+    it("récupère toutes les actions d'une room sur GET /room/actions", (done) => {
+      Adapters.DbAdapter.getAll = jest.fn(async () => actions_in_rooms);
+      const { getAll } = Adapters.DbAdapter;
 
-    request(app)
-      .get("/room/actions")
-      .expect(200, [{ type: "CRICKET/INSCRIRE_CRICKET", joueur: "Olive" }])
-      .then(() => expect(getAll).toHaveBeenCalledWith("actions_in_rooms"))
-      .then(done);
+      request(app)
+        .get("/room/actions")
+        .expect(200, [{ type: "CRICKET/INSCRIRE_CRICKET", joueur: "Olive" }])
+        .then(() =>
+          expect(getAll).toHaveBeenCalledWith(
+            "actions_in_rooms",
+            "action_time ASC"
+          )
+        )
+        .then(done);
+    });
   });
 });
