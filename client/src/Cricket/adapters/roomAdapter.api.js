@@ -2,7 +2,7 @@ import { Env } from "../../env/Env";
 
 export const roomAdapterApi = {
   getAllRoomActions: async ({ http = httpHeroku } = {}) =>
-    await http.get("/room/actions"),
+    (await http.get("/room/actions")) || [],
 };
 
 const httpHeroku = {
