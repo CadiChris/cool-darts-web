@@ -12,4 +12,10 @@ export const visiter = (joueur, chiffresTouches) => ({
 });
 
 export const CATCH_UP_ON_ROOM = "CATCH_UP_ON_ROOM";
-export const catchUpOnRoom = () => ({ type: CATCH_UP_ON_ROOM });
+export const catchUpOnRoom = () => asLocalOnly({ type: CATCH_UP_ON_ROOM });
+
+export function asLocalOnly(actionOriginale) {
+  return { ...actionOriginale, localOnly: true };
+}
+
+export const isLocalOnly = (action) => action.localOnly === true;

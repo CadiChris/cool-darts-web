@@ -2,18 +2,18 @@ import { call, put, takeEvery } from "redux-saga/effects";
 import { apiWebSocket } from "../sockets/apiWebSocket.socket";
 import { eventChannel } from "redux-saga";
 import { roomAdapterApi } from "../adapters/roomAdapter.api";
+import { asLocalOnly, CATCH_UP_ON_ROOM, isLocalOnly } from "./actions";
 
 export function* sendEverythingToSocket({ socket = apiWebSocket } = {}) {
   yield takeEvery("*", function* (a) {
-    // TODO: ajouter "if !localOnly"
-    if (!a.fromRemote) socket.send(a);
+    if (!isLocalOnly(a)) socket.send(a);
   });
 }
 
 export function* dispatchEveryActionReceived({ socket = apiWebSocket } = {}) {
   const socketChannel = yield call(webSocketChannel, socket);
   yield takeEvery(socketChannel, function* (a) {
-    yield put({ ...a, fromRemote: true });
+    yield put(asLocalOnly(a));
   });
 }
 
@@ -28,8 +28,8 @@ function webSocketChannel(socket) {
 }
 
 export function* catchUpOnRoomSaga({ roomAdapter = roomAdapterApi } = {}) {
-  yield takeEvery("CATCH_UP", function* () {
+  yield takeEvery(CATCH_UP_ON_ROOM, function* () {
     const actions = yield call(roomAdapter.getAllRoomActions);
-    for (const action of actions) yield put(action);
+    for (const action of actions) yield put(asLocalOnly(action));
   });
 }
