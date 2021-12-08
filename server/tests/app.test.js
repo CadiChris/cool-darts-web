@@ -1,21 +1,15 @@
 const request = require("supertest");
-const { app } = require("../app");
-const { Adapters } = require("../adapters/adapters");
+const { makeApp } = require("../app");
 const actions_in_rooms = require("./data/actions_in_rooms.json");
+const { getInMemoryDbAdapter } = require("../adapters/DbAdapter.inMemory");
 
 describe("App", () => {
-  beforeEach(() => {
-    Adapters.DbAdapter = {
-      truncate: jest.fn(async () => {}),
-      getAll: jest.fn(async () => []),
-    };
-  });
-
   describe("POST /room/clean", () => {
     it("vide la table des actions sur POST /room/clean", (done) => {
-      const { truncate } = Adapters.DbAdapter;
+      const dbAdapter = getInMemoryDbAdapter();
+      const { truncate } = dbAdapter;
 
-      request(app)
+      request(makeApp({ dbAdapter }))
         .post("/room/clean")
         .expect(200)
         .then(() => expect(truncate).toHaveBeenCalledWith("actions_in_rooms"))
@@ -26,14 +20,16 @@ describe("App", () => {
 
   describe("GET /room/actions", () => {
     it("récupère toutes les actions d'une room sur GET /room/actions", (done) => {
-      Adapters.DbAdapter.getAll = jest.fn(async () => actions_in_rooms);
-      const { getAll } = Adapters.DbAdapter;
+      const dbAdapter = {
+        ...getInMemoryDbAdapter(),
+        getAll: jest.fn(async () => actions_in_rooms),
+      };
 
-      request(app)
+      request(makeApp({ dbAdapter }))
         .get("/room/actions")
         .expect(200, [{ type: "CRICKET/INSCRIRE_CRICKET", joueur: "Olive" }])
         .then(() =>
-          expect(getAll).toHaveBeenCalledWith(
+          expect(dbAdapter.getAll).toHaveBeenCalledWith(
             "actions_in_rooms",
             "action_time ASC"
           )

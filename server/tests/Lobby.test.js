@@ -1,6 +1,7 @@
 const { Lobby, Joueur } = require("../Lobby");
 const { ActionsInRoomsRepository } = require("../ActionsInRoomsRepository");
 const { Clock } = require("../Clock");
+const { getInMemoryDbAdapter } = require("../adapters/DbAdapter.inMemory");
 
 describe("Lobby", () => {
   it("Un joueur qui rejoint une salle connaît sa salle", () => {
@@ -40,13 +41,13 @@ describe("Lobby", () => {
 
   it("Persiste les coups joués par les joueurs", async () => {
     Clock.now = () => "2021-12-08T22:40:02.193Z";
-    const { lobby, inMemoryAdapter } = createLobby();
+    const { lobby, inMemoryDb } = createLobby();
     const j1 = new Joueur({});
     lobby.joinRoom(j1, "Room A");
 
     await lobby.jouer(j1, { type: "LANCER" });
 
-    expect(inMemoryAdapter.storage).toContainEqual({
+    expect(inMemoryDb.storage).toContainEqual({
       table: "actions_in_rooms",
       columns: ["room_name", "action", "action_time"],
       values: ["Room A", { type: "LANCER" }, "2021-12-08T22:40:02.193Z"],
@@ -55,17 +56,8 @@ describe("Lobby", () => {
 });
 
 function createLobby() {
-  const inMemoryAdapter = getInMemoryAdapter();
-  const repository = new ActionsInRoomsRepository(inMemoryAdapter);
+  const inMemoryDb = getInMemoryDbAdapter();
+  const repository = new ActionsInRoomsRepository(inMemoryDb);
   const lobby = new Lobby({ actionsInRoomsRepository: repository });
-  return { lobby, inMemoryAdapter };
-}
-
-function getInMemoryAdapter() {
-  return {
-    storage: [],
-    insert(table, columns, values) {
-      this.storage.push({ table, columns, values });
-    },
-  };
+  return { lobby, inMemoryDb };
 }
