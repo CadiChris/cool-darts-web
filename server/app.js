@@ -1,14 +1,15 @@
 const express = require("express");
 const path = require("path");
 const { Adapters } = require("./adapters/adapters");
-const { log } = require("./log");
 const { ActionsInRoomsRepository } = require("./ActionsInRoomsRepository");
 const { Lobby, Joueur } = require("./Lobby");
 
 const app = express();
-const expressWs = require("express-ws")(app);
+require("express-ws")(app);
 
-const lobby = new Lobby();
+const lobby = new Lobby({
+  actionsInRoomsRepository: new ActionsInRoomsRepository(Adapters.DbAdapter),
+});
 
 app
   .use(express.static(path.join(__dirname, "./../client/dist")))

@@ -15,11 +15,11 @@ class ActionsInRoomsRepository {
     return rows.map((r) => r.action);
   }
 
-  async storeAction(action) {
+  async storeAction(room, action, time) {
     await this.dbAdapter.insert(
       "actions_in_rooms",
       ["room_name", "action", "action_time"],
-      ["", action, new Date()]
+      [room.name, action, time]
     );
   }
 }

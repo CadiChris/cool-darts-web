@@ -1,6 +1,11 @@
 const { log } = require("./log");
+const { Clock } = require("./Clock");
 
 class Lobby {
+  constructor({ actionsInRoomsRepository }) {
+    this._actionsInRoomsRepository = actionsInRoomsRepository;
+  }
+
   _joueurs = [];
 
   joinRoom(joueur, nomDeLaSalle) {
@@ -9,10 +14,17 @@ class Lobby {
     this._joueurs = [...this._joueurs, joueur];
   }
 
-  jouer(joueur, action) {
+  async jouer(joueur, action) {
+    const room = joueur.room();
+    await this._actionsInRoomsRepository.storeAction(
+      room,
+      action,
+      Clock.now(),
+      Clock.now()
+    );
     this._joueurs
       .filter((j) => j !== joueur)
-      .filter((j) => j.estDansLaRoom(joueur.room()))
+      .filter((j) => j.estDansLaRoom(room))
       .forEach((autre) => autre.prevenir(action));
   }
 }
