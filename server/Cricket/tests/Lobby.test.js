@@ -1,7 +1,7 @@
 const { Lobby, Joueur } = require("../Lobby");
 const { ActionsInRoomsRepository } = require("../ActionsInRoomsRepository");
-const { Clock } = require("../Clock");
-const { getInMemoryDbAdapter } = require("../adapters/DbAdapter.inMemory");
+const { Clock } = require("../../Clock");
+const { getInMemoryDbAdapter } = require("../../adapters/DbAdapter.inMemory");
 
 describe("Lobby", () => {
   it("Un joueur qui rejoint une salle connaît sa salle", () => {

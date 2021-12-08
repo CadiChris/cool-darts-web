@@ -1,5 +1,5 @@
-const { log } = require("./log");
-const { Clock } = require("./Clock");
+const { log } = require("../log");
+const { Clock } = require("../Clock");
 
 class Lobby {
   constructor({ actionsInRoomsRepository }) {
@@ -16,12 +16,7 @@ class Lobby {
 
   async jouer(joueur, action) {
     const room = joueur.room();
-    await this._actionsInRoomsRepository.storeAction(
-      room,
-      action,
-      Clock.now(),
-      Clock.now()
-    );
+    await this._actionsInRoomsRepository.storeAction(room, action, Clock.now());
     this._joueurs
       .filter((j) => j !== joueur)
       .filter((j) => j.estDansLaRoom(room))

@@ -1,7 +1,9 @@
 const express = require("express");
 const path = require("path");
-const { ActionsInRoomsRepository } = require("./ActionsInRoomsRepository");
-const { Lobby, Joueur } = require("./Lobby");
+const {
+  ActionsInRoomsRepository,
+} = require("./Cricket/ActionsInRoomsRepository");
+const { Lobby, Joueur } = require("./Cricket/Lobby");
 
 function makeApp({ dbAdapter }) {
   const actionsInRoomsRepository = new ActionsInRoomsRepository(dbAdapter);
