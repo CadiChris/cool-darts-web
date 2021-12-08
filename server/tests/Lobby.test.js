@@ -1,6 +1,6 @@
 const { Lobby, Joueur } = require("../Lobby");
 
-describe("Cricket", () => {
+describe("Lobby", () => {
   it("Un joueur qui rejoint une salle connaît sa salle", () => {
     const lobby = new Lobby();
     const j1 = new Joueur({});
@@ -19,7 +19,7 @@ describe("Cricket", () => {
     expect(mockSocket.send).toHaveBeenCalledWith({ type: "LANCER" });
   });
 
-  it("Quand un joueur joue dans une salle, les autres joueurs sont prévenus", () => {
+  it("Quand un joueur joue, les autres joueurs de la salle sont prévenus", () => {
     const lobby = new Lobby();
 
     const socket1 = { send: jest.fn() };

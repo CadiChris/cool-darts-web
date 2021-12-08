@@ -12,10 +12,10 @@ const lobby = new Lobby();
 
 app
   .use(express.static(path.join(__dirname, "./../client/dist")))
-  .ws("/api/web-socket", (newSocket) => {
-    const joueur = new Joueur({ socket: newSocket });
+  .ws("/api/web-socket", (socket) => {
+    const joueur = new Joueur({ socket });
     lobby.joinRoom(joueur, "Salle A");
-    newSocket.on("message", (msg) => lobby.jouer(joueur, msg));
+    socket.on("message", (msg) => lobby.jouer(joueur, msg));
   })
   .get("/room/actions", (req, res) => {
     new ActionsInRoomsRepository(Adapters.DbAdapter)
