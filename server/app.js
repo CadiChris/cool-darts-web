@@ -21,8 +21,8 @@ function makeApp({ dbAdapter }) {
         .getAllReduxActions()
         .then((actions) => res.status(200).json(actions));
     })
-    .post("/room/clean", (req, res) => {
-      actionsInRoomsRepository.cleanRoom().then(() => res.status(200).json());
+    .get("/room/clean", (req, res) => {
+      actionsInRoomsRepository.cleanRoom().then(() => res.redirect(301, "/"));
     });
 
   return app;
