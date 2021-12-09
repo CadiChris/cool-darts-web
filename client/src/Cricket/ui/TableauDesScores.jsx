@@ -54,8 +54,8 @@ export function TableauDesScores() {
       <div className="partie-commandes">
         <Commandes
           touches={stateTouches}
-          onReset={() => dispatchTouches(reset())}
-          onSubmit={() => {
+          onResetVisite={() => dispatchTouches(reset())}
+          onSubmitVisite={() => {
             dispatch(enVisite(stateTouches));
             dispatchTouches(reset());
           }}
