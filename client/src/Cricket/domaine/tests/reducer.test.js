@@ -79,7 +79,7 @@ it("retourne aux inscriptions", () => {
 
   expect(selectPhase(apresRetour)).toEqual(INSCRIPTION);
   expect(selectScores(apresRetour)).toEqual([]);
-  expect(selectInscrits(apresRetour)).toEqual([{ nom: "J1" }, { nom: "J2" }]);
+  expect(selectInscrits(apresRetour)).toEqual([]);
 });
 
 it("modifie le score sur un lancer de fléchette", () => {

@@ -39,7 +39,7 @@ export function cricketReducer(state = STATE_INITIAL, action) {
       };
 
     case RETOURNER_AUX_INSCRIPTIONS:
-      return { ...state, phase: INSCRIPTION, scores: [], vainqueurs: [] };
+      return STATE_INITIAL;
 
     case VISITER:
       const nouveauScore = action.chiffresTouches.reduce((score, chiffre) => {
