@@ -4,10 +4,14 @@
   height: 100vh;
 }
 
-.tableau-des-scores > div:first-child {
+.tableau-des-scores .partie-tableau {
   display: flex;
   flex-direction: row;
-  flex: 1;
+  flex: 7;
+}
+
+.tableau-des-scores .partie-commandes {
+  flex: 3;
 }
 
 .tableau-des-scores h3 {
@@ -77,20 +81,37 @@
 
 .tableau-des-scores .commandes {
   display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 1rem;
+  height: 7rem;
+}
+
+.tableau-des-scores .commandes .la-visite {
+  display: flex;
   align-items: center;
   font-style: italic;
   font-size: 2rem;
   text-align: center;
-  padding-left: 1rem;
-  padding-right: 1rem;
-  height: 9rem; /* Pour loger 3 chiffres différents au max */
 }
 
-.tableau-des-scores .commandes .resume {
+.tableau-des-scores .commandes .la-visite .resume {
   flex: 1;
 }
 
-.tableau-des-scores .commandes button {
+.tableau-des-scores .commandes .la-visite button {
   font-size: 1.5rem;
   padding: 1rem;
+}
+
+.tableau-des-scores .commandes .navigation {
+  display: flex;
+  justify-content: space-between;
+}
+
+.tableau-des-scores .commandes .navigation button {
+  font-size: 0.8rem;
+  padding-left: 0.8rem;
+  padding-right: 0.8rem;
+  height: 2rem;
 }

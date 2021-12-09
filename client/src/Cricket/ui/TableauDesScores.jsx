@@ -12,6 +12,7 @@ import {
   uneTouche,
 } from "./commandes.reducer";
 import { useCricket } from "../../store/store";
+import { redo, undo } from "../../store/enhancers/undo/undoable";
 
 export function TableauDesScores() {
   const dispatch = useDispatch();
@@ -26,7 +27,7 @@ export function TableauDesScores() {
 
   return (
     <div className="tableau-des-scores">
-      <div>
+      <div className="partie-tableau">
         {premier.map((s) => (
           <ColonneJoueur
             key={s.joueur}
@@ -49,14 +50,19 @@ export function TableauDesScores() {
           />
         ))}
       </div>
-      <Commandes
-        touches={stateTouches}
-        onReset={() => dispatchTouches(reset())}
-        onSubmit={() => {
-          dispatch(enVisite(stateTouches));
-          dispatchTouches(reset());
-        }}
-      />
+
+      <div className="partie-commandes">
+        <Commandes
+          touches={stateTouches}
+          onReset={() => dispatchTouches(reset())}
+          onSubmit={() => {
+            dispatch(enVisite(stateTouches));
+            dispatchTouches(reset());
+          }}
+          onUndo={() => dispatch(undo())}
+          onRedo={() => dispatch(redo())}
+        />
+      </div>
     </div>
   );
 }
