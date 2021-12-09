@@ -1,15 +1,13 @@
 const { Client } = require("pg");
 const { log } = require("../log");
 const format = require("pg-format");
+const { Env } = require("../env/Env");
 
 log("DB URL is " + process.env.DATABASE_URL);
 
 const client = new Client({
   connectionString: process.env.DATABASE_URL,
-  ssl:
-    process.env.NODE_ENV === "production"
-      ? { rejectUnauthorized: false }
-      : false,
+  ssl: Env.estEnProd() ? { rejectUnauthorized: false } : false,
 });
 
 client.connect();

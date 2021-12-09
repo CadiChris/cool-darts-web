@@ -1,16 +1,19 @@
 const express = require("express");
 const path = require("path");
+const cors = require("cors");
 const {
   ActionsInRoomsRepository,
 } = require("./Cricket/ActionsInRoomsRepository");
 const { Lobby, Joueur } = require("./Cricket/Lobby");
 
-function makeApp({ dbAdapter }) {
+function makeApp({ dbAdapter, allowCors = false }) {
+  const app = express();
+  require("express-ws")(app);
+  if (allowCors) app.use(cors());
+
   const actionsInRoomsRepository = new ActionsInRoomsRepository(dbAdapter);
   const lobby = new Lobby({ actionsInRoomsRepository });
 
-  const app = express();
-  require("express-ws")(app);
   app
     .use(express.static(path.join(__dirname, "./../client/dist")))
     .ws("/api/web-socket", (socket) => {
