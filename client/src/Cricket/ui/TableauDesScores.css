@@ -127,3 +127,17 @@
   height: 2rem;
   color: var(--color-fond);
 }
+
+.tableau-des-scores .commandes .vainqueurs {
+  display: flex;
+  justify-content: stretch;
+}
+
+.tableau-des-scores .commandes .vainqueurs button {
+  margin: auto;
+  font-size: 1.5rem;
+}
+
+.tableau-des-scores .commandes .vainqueurs button .icone {
+  margin-right: 1rem;
+}

@@ -9,7 +9,7 @@ import {
 import { TableauDesScores } from "./TableauDesScores";
 import { useCricket } from "../../store/store";
 
-const { INSCRIPTION, EN_COURS } = PHASES;
+const { INSCRIPTION, EN_COURS, TERMINEE } = PHASES;
 
 export function Cricket({ roomAdapter }) {
   const dispatch = useDispatch();
@@ -27,7 +27,7 @@ export function Cricket({ roomAdapter }) {
         />
       )}
 
-      {phase === EN_COURS && (
+      {(phase === EN_COURS || phase === TERMINEE) && (
         <TableauDesScores
           onEndGame={async () => {
             await roomAdapter.cleanRoom();

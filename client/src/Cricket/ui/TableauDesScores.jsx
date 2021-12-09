@@ -1,5 +1,5 @@
 import { useEffect, useReducer, useState } from "react";
-import { laSection, selectScores } from "../domaine/reducer";
+import { laSection, selectScores, selectVainqueurs } from "../domaine/reducer";
 import "./TableauDesScores.css";
 import { split } from "../../utils/tableau";
 import { useDispatch } from "react-redux";
@@ -17,6 +17,7 @@ import { redo, undo } from "../../store/enhancers/undo/undoable";
 export function TableauDesScores({ onEndGame }) {
   const dispatch = useDispatch();
   const scores = useCricket(selectScores);
+  const vainqueurs = useCricket(selectVainqueurs);
 
   const { premier, second } = split(scores);
 
@@ -62,6 +63,7 @@ export function TableauDesScores({ onEndGame }) {
           onUndo={() => dispatch(undo())}
           onRedo={() => dispatch(redo())}
           onEndGame={onEndGame}
+          vainqueurs={vainqueurs}
         />
       </div>
     </div>

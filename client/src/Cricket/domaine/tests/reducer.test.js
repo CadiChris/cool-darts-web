@@ -6,6 +6,7 @@ import {
   selectInscrits,
   selectPhase,
   selectScores,
+  selectVainqueurs,
 } from "../reducer";
 import {
   demarrerCricket,
@@ -14,7 +15,7 @@ import {
   visiter,
 } from "../actions";
 
-const { EN_COURS, INSCRIPTION } = PHASES;
+const { EN_COURS, INSCRIPTION, TERMINEE } = PHASES;
 
 it("retourne le state initial", () => {
   expect(cricketReducer(undefined, {})).toEqual({
@@ -125,7 +126,8 @@ it("met fin à la partie sur le lancer qui désigne le vainqueur", () => {
   const fermerLeBull = visiter("J1", triple(25));
   const partieTerminee = cricketReducer(toutFermeSaufLeBull, fermerLeBull);
 
-  expect(partieTerminee.vainqueurs).toEqual(["J1"]);
+  expect(selectPhase(partieTerminee)).toEqual(TERMINEE);
+  expect(selectVainqueurs(partieTerminee)).toEqual(["J1"]);
 });
 
 it("écrase la partie en cours au démarrage d'une nouvelle partie", () => {

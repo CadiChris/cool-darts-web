@@ -68,9 +68,8 @@ const estTerminee = (vainqueursDuNouveauScore) =>
   vainqueursDuNouveauScore.length > 0 ? TERMINEE : null;
 
 export const selectInscrits = (state) => state.joueurs;
-
 export const selectPhase = (state) => state.phase;
-
 export const selectScores = (state) => state.scores;
+export const selectVainqueurs = (state) => state.vainqueurs;
 
 export const laSection = (chiffre, unScore) => unScore.cible[chiffre];
