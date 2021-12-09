@@ -5,11 +5,12 @@ import "./styles/boutons.css";
 import App from "./App";
 import { Provider } from "react-redux";
 import { store } from "./store/store";
+import { roomAdapterApi } from "./Cricket/adapters/roomAdapter.api";
 
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
-      <App />
+      <App roomAdapter={roomAdapterApi} />
     </Provider>
   </React.StrictMode>,
   document.getElementById("root")

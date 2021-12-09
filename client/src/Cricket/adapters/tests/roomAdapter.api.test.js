@@ -21,4 +21,14 @@ describe("Room Adapter API", () => {
       expect(actions).toEqual([inscrireCricket("J1")]);
     });
   });
+
+  describe("cleanRoom", () => {
+    it("appelle l'API", async () => {
+      const httpMock = { post: jest.fn(async () => {}) };
+
+      await roomAdapterApi.cleanRoom({ http: httpMock });
+
+      expect(httpMock.post).toHaveBeenCalledWith("/room/clean");
+    });
+  });
 });

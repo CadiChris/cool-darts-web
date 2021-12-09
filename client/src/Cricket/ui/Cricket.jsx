@@ -1,13 +1,17 @@
 import { Inscription } from "./Inscription";
 import { PHASES, selectInscrits, selectPhase } from "../domaine/reducer";
 import { useDispatch } from "react-redux";
-import { demarrerCricket, inscrireCricket } from "../domaine/actions";
+import {
+  demarrerCricket,
+  inscrireCricket,
+  retournerAuxInscriptions,
+} from "../domaine/actions";
 import { TableauDesScores } from "./TableauDesScores";
 import { useCricket } from "../../store/store";
 
 const { INSCRIPTION, EN_COURS } = PHASES;
 
-export function Cricket() {
+export function Cricket({ roomAdapter }) {
   const dispatch = useDispatch();
   const onInscription = (joueur) => dispatch(inscrireCricket(joueur));
   const phase = useCricket(selectPhase);
@@ -23,7 +27,14 @@ export function Cricket() {
         />
       )}
 
-      {phase === EN_COURS && <TableauDesScores/>}
+      {phase === EN_COURS && (
+        <TableauDesScores
+          onEndGame={async () => {
+            await roomAdapter.cleanRoom();
+            dispatch(retournerAuxInscriptions());
+          }}
+        />
+      )}
     </div>
   );
 }

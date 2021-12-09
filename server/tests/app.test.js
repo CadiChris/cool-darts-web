@@ -5,13 +5,13 @@ const { getInMemoryDbAdapter } = require("../adapters/DbAdapter.inMemory");
 
 describe("App", () => {
   describe("GET /room/clean", () => {
-    it("vide la table des actions sur GET /room/clean (non RESTful, mais pratique pour l'instant)", (done) => {
+    it("vide la table des actions sur POST /room/clean", (done) => {
       const dbAdapter = getInMemoryDbAdapter();
       const { truncate } = dbAdapter;
 
       request(makeApp({ dbAdapter }))
-        .get("/room/clean")
-        .expect(301, "Moved Permanently. Redirecting to /")
+        .post("/room/clean")
+        .expect(200)
         .then(() => expect(truncate).toHaveBeenCalledWith("actions_in_rooms"))
         .then(done)
         .catch((err) => done(err));
