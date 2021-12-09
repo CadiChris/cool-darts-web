@@ -1,6 +1,7 @@
 import { applyMiddleware, createStore } from "redux";
 import createSagaMiddleware from "redux-saga";
 import { composeWithDevTools } from "redux-devtools-extension";
+import { useSelector } from "react-redux";
 import {
   catchUpOnRoomSaga,
   dispatchEveryActionReceived,
@@ -18,3 +19,6 @@ export const store = createStore(
 sagaMiddleware.run(sendEverythingToSocket);
 sagaMiddleware.run(dispatchEveryActionReceived);
 sagaMiddleware.run(catchUpOnRoomSaga);
+
+export const useCricket = (selecteur) =>
+  useSelector((rootState) => selecteur(rootState));
