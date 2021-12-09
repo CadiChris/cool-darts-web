@@ -2,7 +2,7 @@ import { useEffect, useReducer, useState } from "react";
 import { laSection, selectScores } from "../domaine/reducer";
 import "./TableauDesScores.css";
 import { split } from "../../utils/tableau";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { Commandes } from "./Commandes";
 import {
   commandesReducer,
@@ -11,10 +11,11 @@ import {
   STATE_INITIAL,
   uneTouche,
 } from "./commandes.reducer";
+import { useCricket } from "../../store/store";
 
 export function TableauDesScores() {
   const dispatch = useDispatch();
-  const scores = useSelector(selectScores);
+  const scores = useCricket(selectScores);
 
   const { premier, second } = split(scores);
 
