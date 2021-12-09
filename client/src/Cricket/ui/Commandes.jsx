@@ -1,3 +1,6 @@
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faCheck, faRedo, faTrashAlt, faUndo } from '@fortawesome/free-solid-svg-icons'
+
 export function Commandes({ touches, onReset, onSubmit, onUndo, onRedo }) {
   const aucuneTouche = touches.touches.length === 0;
   return (
@@ -5,7 +8,7 @@ export function Commandes({ touches, onReset, onSubmit, onUndo, onRedo }) {
       <div className="commandes">
         <div className="la-visite">
           <button className="bouton-principal" onClick={onReset}>
-            ❌
+            <FontAwesomeIcon icon={faTrashAlt} />
           </button>
 
           <div className="resume">
@@ -19,15 +22,15 @@ export function Commandes({ touches, onReset, onSubmit, onUndo, onRedo }) {
             disabled={aucuneTouche}
             onClick={onSubmit}
           >
-            OK
+            <FontAwesomeIcon icon={faCheck} />
           </button>
         </div>
         <div className="navigation">
           <button className="bouton-principal" onClick={onUndo}>
-            En arrière
+            <FontAwesomeIcon icon={faUndo} />
           </button>
           <button className="bouton-principal" onClick={onRedo}>
-            En avant
+            <FontAwesomeIcon icon={faRedo} />
           </button>
         </div>
       </div>
