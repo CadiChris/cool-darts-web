@@ -1,7 +1,5 @@
 # Serveur
 
-[ ] Renvoyer un tableau vide lorsqu'il n'y a pas d'actions à rejouer (actuellement c'est le client qui fait un || [])
-
 # Client
 
 [ ] Ne pas planter s'il y a une exception dans une saga
