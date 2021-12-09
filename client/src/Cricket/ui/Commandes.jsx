@@ -1,6 +1,7 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faCheck,
+  faHome,
   faRedo,
   faTrashAlt,
   faUndo,
@@ -12,6 +13,7 @@ export function Commandes({
   onSubmitVisite,
   onUndo,
   onRedo,
+  onEndGame,
 }) {
   const aucuneTouche = touches.touches.length === 0;
   return (
@@ -37,6 +39,9 @@ export function Commandes({
           </button>
         </div>
         <div className="navigation">
+          <button className="bouton-principal" onClick={onEndGame}>
+            <FontAwesomeIcon icon={faHome} />
+          </button>
           <button className="bouton-principal" onClick={onUndo}>
             <FontAwesomeIcon icon={faUndo} />
           </button>

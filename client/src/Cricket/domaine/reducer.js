@@ -1,7 +1,12 @@
 import { scoreVierge } from "./arbitrage/score";
 import { calculerLeNouveauScore } from "./arbitrage/arbitre";
 import { vainqueurs } from "./arbitrage/vainqueurs";
-import { DEMARRER_CRICKET, INSCRIRE_CRICKET, VISITER } from "./actions";
+import {
+  DEMARRER_CRICKET,
+  INSCRIRE_CRICKET,
+  RETOURNER_AUX_INSCRIPTIONS,
+  VISITER,
+} from "./actions";
 
 export const PHASES = {
   INSCRIPTION: "INSCRIPTION",
@@ -32,6 +37,9 @@ export function cricketReducer(state = STATE_INITIAL, action) {
         scores: state.joueurs.map((s) => scoreVierge(s.nom)),
         phase: EN_COURS,
       };
+
+    case RETOURNER_AUX_INSCRIPTIONS:
+      return { ...state, phase: INSCRIPTION, scores: [], vainqueurs: [] };
 
     case VISITER:
       const nouveauScore = action.chiffresTouches.reduce((score, chiffre) => {

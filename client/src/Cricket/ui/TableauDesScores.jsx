@@ -4,15 +4,10 @@ import "./TableauDesScores.css";
 import { split } from "../../utils/tableau";
 import { useDispatch } from "react-redux";
 import { Commandes } from "./Commandes";
-import {
-  commandesReducer,
-  enVisite,
-  reset,
-  STATE_INITIAL,
-  uneTouche,
-} from "./commandes.reducer";
+import { commandesReducer, enVisite, reset, STATE_INITIAL, uneTouche, } from "./commandes.reducer";
 import { useCricket } from "../../store/store";
 import { redo, undo } from "../../store/enhancers/undo/undoable";
+import { retournerAuxInscriptions } from "../domaine/actions";
 
 export function TableauDesScores() {
   const dispatch = useDispatch();
@@ -61,6 +56,7 @@ export function TableauDesScores() {
           }}
           onUndo={() => dispatch(undo())}
           onRedo={() => dispatch(redo())}
+          onEndGame={() => dispatch(retournerAuxInscriptions())}
         />
       </div>
     </div>

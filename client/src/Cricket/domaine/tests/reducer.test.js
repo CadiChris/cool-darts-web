@@ -7,7 +7,12 @@ import {
   selectPhase,
   selectScores,
 } from "../reducer";
-import { demarrerCricket, inscrireCricket, visiter } from "../actions";
+import {
+  demarrerCricket,
+  inscrireCricket,
+  retournerAuxInscriptions,
+  visiter,
+} from "../actions";
 
 const { EN_COURS, INSCRIPTION } = PHASES;
 
@@ -62,6 +67,19 @@ it("démarre la partie", () => {
       },
     },
   ]);
+});
+
+it("retourne aux inscriptions", () => {
+  const apresRetour = executer([
+    inscrireCricket("J1"),
+    inscrireCricket("J2"),
+    demarrerCricket(),
+    retournerAuxInscriptions(),
+  ]);
+
+  expect(selectPhase(apresRetour)).toEqual(INSCRIPTION);
+  expect(selectScores(apresRetour)).toEqual([]);
+  expect(selectInscrits(apresRetour)).toEqual([{ nom: "J1" }, { nom: "J2" }]);
 });
 
 it("modifie le score sur un lancer de fléchette", () => {
