@@ -92,16 +92,27 @@
   align-items: center;
   font-style: italic;
   font-size: 2rem;
-  text-align: center;
+  height: 4rem;
 }
 
 .tableau-des-scores .commandes .la-visite .resume {
   flex: 1;
+  display: flex;
+  justify-content: center;
+}
+
+.tableau-des-scores .commandes .la-visite .chiffre-visite {
+  text-align: center;
+  margin: 0 10px;
+}
+
+.tableau-des-scores .commandes .la-visite .chiffre-visite > div:last-child {
+  font-size: 0.9rem;
 }
 
 .tableau-des-scores .commandes .la-visite button {
   font-size: 1.5rem;
-  padding: 1rem;
+  padding: 3px 0.3rem;
 }
 
 .tableau-des-scores .commandes .navigation {

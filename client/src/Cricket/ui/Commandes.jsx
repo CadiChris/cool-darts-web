@@ -37,10 +37,9 @@ export function Commandes({ touches, onReset, onSubmit, onUndo, onRedo }) {
 
 function Visite({ chiffre, nombre }) {
   return (
-    <div>
-      <span>{nombre}</span> &nbsp;
-      <span className="font-legere">x</span> &nbsp;
-      <span className="font-epaisse">{chiffre === 25 ? "BULL" : chiffre}</span>
+    <div className="chiffre-visite">
+      <div className="font-epaisse">{chiffre === 25 ? "BULL" : chiffre}</div>
+      <div>x {nombre}</div>
     </div>
   );
 }
