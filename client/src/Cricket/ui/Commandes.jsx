@@ -10,13 +10,7 @@ export function Commandes({ touches, onReset, onSubmit, onUndo, onRedo }) {
 
           <div className="resume">
             {touches.touches.map((t) => (
-              <div key={t.chiffre}>
-                <span>{t.nombre}</span> &nbsp;
-                <span className="font-legere">x</span> &nbsp;
-                <span className="font-epaisse">
-                  {t.chiffre === 25 ? "BULL" : t.chiffre}
-                </span>
-              </div>
+              <Visite key={t.chiffre} chiffre={t.chiffre} nombre={t.nombre} />
             ))}
           </div>
 
@@ -29,10 +23,24 @@ export function Commandes({ touches, onReset, onSubmit, onUndo, onRedo }) {
           </button>
         </div>
         <div className="navigation">
-          <button className="bouton-principal" onClick={onUndo}>En arrière</button>
-          <button className="bouton-principal" onClick={onRedo}>En avant</button>
+          <button className="bouton-principal" onClick={onUndo}>
+            En arrière
+          </button>
+          <button className="bouton-principal" onClick={onRedo}>
+            En avant
+          </button>
         </div>
       </div>
     </>
+  );
+}
+
+function Visite({ chiffre, nombre }) {
+  return (
+    <div>
+      <span>{nombre}</span> &nbsp;
+      <span className="font-legere">x</span> &nbsp;
+      <span className="font-epaisse">{chiffre === 25 ? "BULL" : chiffre}</span>
+    </div>
   );
 }
