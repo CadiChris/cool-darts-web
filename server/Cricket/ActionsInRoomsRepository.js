@@ -4,11 +4,13 @@ class ActionsInRoomsRepository {
   }
 
   async cleanRoom() {
-    await this.dbAdapter.copy({
-      source: "actions_in_rooms",
-      destination: "actions_in_rooms_archive",
+    await this.dbAdapter.transaction(async () => {
+      await this.dbAdapter.copy({
+        source: "actions_in_rooms",
+        destination: "actions_in_rooms_archive",
+      });
+      await this.dbAdapter.truncate("actions_in_rooms");
     });
-    await this.dbAdapter.truncate("actions_in_rooms");
   }
 
   async getAllReduxActions() {

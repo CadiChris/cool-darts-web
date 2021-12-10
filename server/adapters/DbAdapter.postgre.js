@@ -35,6 +35,16 @@ const DbAdapterPostgre = {
       format(`INSERT INTO %I SELECT * FROM %I;`, destination, source)
     );
   },
+
+  async transaction(statements) {
+    try {
+      await client.query("BEGIN;");
+      await statements();
+      await client.query("COMMIT;");
+    } catch (e) {
+      await client.query("ROLLBACK;");
+    }
+  },
 };
 
 module.exports = { DbAdapterPostgre };
