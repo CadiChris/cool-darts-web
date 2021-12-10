@@ -36,6 +36,7 @@ export function TableauDesScores({ onEndGame }) {
             onTouche={(chiffre) =>
               dispatchTouches(uneTouche(s.joueur, chiffre))
             }
+            estJoueurCourant={stateTouches.joueur === s.joueur}
           />
         ))}
 
@@ -48,6 +49,7 @@ export function TableauDesScores({ onEndGame }) {
             onTouche={(chiffre) =>
               dispatchTouches(uneTouche(s.joueur, chiffre))
             }
+            estJoueurCourant={stateTouches.joueur === s.joueur}
           />
         ))}
       </div>
@@ -70,10 +72,10 @@ export function TableauDesScores({ onEndGame }) {
   );
 }
 
-function ColonneJoueur({ score, onTouche }) {
+function ColonneJoueur({ score, onTouche, estJoueurCourant }) {
   return (
     <div className="colonne colonne-joueur">
-      <h3 className="cellule">{score.joueur}</h3>
+      <NomDuJoueur joueur={score.joueur} estJoueurCourant={estJoueurCourant} />
       {[20, 19, 18, 17, 16, 15, 25].map((chiffre) => (
         <div
           className="cellule"
@@ -86,6 +88,11 @@ function ColonneJoueur({ score, onTouche }) {
       <Penalite valeur={score.penalite} />
     </div>
   );
+}
+
+function NomDuJoueur(props) {
+  const classCourant = `${props.estJoueurCourant ? `joueur-courant` : ``}`;
+  return <h3 className={`cellule ${classCourant}`}>{props.joueur}</h3>;
 }
 
 function Touches({ section }) {

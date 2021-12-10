@@ -59,6 +59,10 @@
   max-width: 3rem;
 }
 
+.tableau-des-scores .colonne-joueur .joueur-courant {
+  background-color: var(--color-un);
+}
+
 .tableau-des-scores .colonne-joueur .cellule {
   letter-spacing: 0.1rem;
 }
