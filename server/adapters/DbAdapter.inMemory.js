@@ -6,6 +6,7 @@ function getInMemoryDbAdapter() {
     },
     truncate: jest.fn(async () => {}),
     getAll: jest.fn(async () => []),
+    copy: jest.fn(async () => {}),
   };
 }
 

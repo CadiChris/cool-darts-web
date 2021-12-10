@@ -30,8 +30,10 @@ export function Cricket({ roomAdapter }) {
       {(phase === EN_COURS || phase === TERMINEE) && (
         <TableauDesScores
           onEndGame={async () => {
-            await roomAdapter.cleanRoom();
+            // Retour aux inscription *avant* nettoyage, pour que l'action de retour
+            // soit également nettoyée côté serveur.
             dispatch(retournerAuxInscriptions());
+            await roomAdapter.cleanRoom();
           }}
         />
       )}
