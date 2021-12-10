@@ -6,10 +6,13 @@ const {
 } = require("./Cricket/ActionsInRoomsRepository");
 const { Lobby, Joueur } = require("./Cricket/Lobby");
 
-function makeApp({ dbAdapter, allowCors = false }) {
+function makeApp({ dbAdapter, allowCors = false, setupErrorReporting }) {
   const app = express();
-  require("express-ws")(app);
+
+  if (setupErrorReporting) setupErrorReporting.before(app);
   if (allowCors) app.use(cors());
+
+  require("express-ws")(app);
 
   const actionsInRoomsRepository = new ActionsInRoomsRepository(dbAdapter);
   const lobby = new Lobby({ actionsInRoomsRepository });
@@ -29,6 +32,8 @@ function makeApp({ dbAdapter, allowCors = false }) {
     .post("/room/clean", (req, res) => {
       actionsInRoomsRepository.cleanRoom().then(() => res.status(200).json());
     });
+
+  if (setupErrorReporting) setupErrorReporting.after(app);
 
   return app;
 }
